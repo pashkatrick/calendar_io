@@ -1,0 +1,114 @@
+
+.button:nth-child(1) {
+  margin-left: 20px;
+  margin-right: -5px;
+}
+
+
+.mainIcon {
+  width:24px;
+  height: 24px;
+  margin-left: 20px;
+  background-image: url(./img/calendar.png);
+}
+
+.buttonBright {
+  width: max-content;
+  padding: 0 20px 0 20px;
+  margin-right: 20px;
+  margin-left: 10px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid white;
+  border-radius: 100px 100px 100px 100px;
+  background-color: #fddd33;
+  text-align: center;
+  text-decoration: none;
+  color:black;
+  font-weight: bold;
+}
+
+.buttonBright:hover {
+  cursor: pointer;
+  border: 1px solid #fddd33;
+}
+
+.button, .buttonActive {
+  width: max-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 10px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  border-radius: 100px 100px 100px 100px;
+  text-align: center;
+  text-decoration:none;
+  color:black;
+  font-weight: bold;
+  transition: all 0.5s ease;
+}
+
+.rightButtons {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 0;
+}
+
+.buttonActive:hover {
+  cursor: pointer;
+}
+
+.button:hover {
+  cursor: pointer;
+  width: max-content + 20px;
+  height: 40px;
+  background: #F2F2F2;
+}
+
+.buttonActive {
+  background-color: #e2dede;
+}
+
+
+.buttonPlain {
+  width: 90px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 100px 100px 100px 100px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width:70%;
+  height: 60px;
+  background-color: white;
+  border-radius: 100px 100px 100px 100px; 
+  margin-top: 1.5em;
+  margin-bottom: 10em;
+}
+
+.buttonPlain:hover {
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid black;
+  width: 90px;
+  height: 40px;
+  padding: 1px;
+}
+
+.pressedBtn {
+  background-color: #F2F2F2;
+}
+
+.pressedBtn:hover {
+  background-color: #F2F2F2;
+}
