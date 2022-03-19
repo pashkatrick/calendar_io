@@ -1,36 +1,27 @@
 import { useState } from "react";
-import { useNavigate, NavLink, Link } from 'react-router-dom'
-import store from '../redux/store'
-import { useSelector } from 'react-redux';
-import * as actions from '../redux/actionTypes'
-import TimeForConsumer from "./TimeForConsumer";
 
 export default function EventForm(props) {
 
-  const currentDate = useSelector(state=>state.chosenDate)  
-  
-  const navigate = useNavigate()
-  const [event, setEvent] = useState({
-      name:"",
-      email:"",
-      description:"",
-      providerName: props.link,
-      date:currentDate,
-      from:"",
-      to:""
-  })
-
-  let error=""
-    
-  function saveEvent() {    
-    store.dispatch({
-      type:actions.EVENT_ADDED,
-      payload:{
-      event
-      }
+    const date=''
+    const [event, setEvent] = useState({
+        name:"",
+        email:"",
+        description:""
     })
-    navigate(`/success`)
-  }
+
+    function saveEvent(e) {    
+        const eventNew = {
+            date:date,
+            providerName:props.link,
+            consumerName: event.name,
+            consumerEmail: event.consumerEmail,
+            start:'4',
+            time:'pm',
+            long:15
+          }
+          localStorage.setItem("event", JSON.stringify(eventNew))
+          console.log(eventNew)
+      }
 
     return (
     <div className="event_form">
@@ -38,17 +29,14 @@ export default function EventForm(props) {
         <input  className="event_input" name="name" placeholder="John Doe" type="text" value={event.name} onChange={e=>setEvent({...event, name:e.target.value})}/>
         <br/>
         <label htmlFor="email">Email:</label>
-        <input className="event_input" name="email" placeholder="email@email.com" type="text" value={event.email} onChange={e=>setEvent({...event, email:e.target.value})} />
+        <input className="event_input" name="email" placeholder="email@email.com" type="text" value={event.consumerEmail} onChange={e=>setEvent({...event, consumerEmail:e.target.value})} />
         <br/>
         <label htmlFor="description">Description:</label>
         <textarea placeholder="say something" rows="4" type="textarea" value={event.description} onChange={e=>setEvent({...event, description:e.target.value})} /> 
-        <br />
-        <div className="row">
-          <div className="buttonBright" onClick={()=>navigate(-1)}>Back</div>
-          <div className="buttonBright" onClick={()=>saveEvent()}>Submit</div>
-          <p>{error}</p>
-          </div>
+        <p>{date}</p>
+        <button onClick={()=>saveEvent()}>Submit</button>
     </div>
+
 );
 }
  

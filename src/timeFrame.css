@@ -1,0 +1,74 @@
+
+.rowFrame {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.activeTime {
+  background-color: black;
+  color:white;
+  padding:3px;
+}
+
+.activeFrame, .nonActiveFrame {
+  padding: 3px;
+}
+
+.activeFrame {
+  border:1px solid black;
+}
+
+.nonActiveFrame {
+  border:1px solid rgb(203, 203, 203);
+}
+
+.nonActiveTime {
+  padding:3px;
+}
+
+.nonActiveTime:hover {
+  cursor:default;
+  background-color: rgb(218, 218, 218);
+}
+
+.columnFrame {
+  width: 95px;
+}
+
+.testCurrent {
+  padding: 3px;
+}
+
+.timeFrame {
+  width: 93px;
+  height:8em;
+  overflow-y:auto;
+	float:left;
+	position:absolute;
+  border:1px solid grey;
+  background-color: white;
+  z-index: 1;
+  margin-top: 2px;
+}
+
+.timeFrameInv {
+  display: none;
+}
+
+.arrowDown, .arrowUp {
+  width:18px;
+  height: 18px;
+  background: url('./img/expand_more_black_18dp.svg');
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+.timeGap {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  width:20px;
+}
