@@ -57,7 +57,7 @@ code {
 .page {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
   background-color: #fcfcfc;
 
@@ -584,3 +584,4 @@ cursor: pointer;
 .columnFrame {
   width: 82px;
 }
+

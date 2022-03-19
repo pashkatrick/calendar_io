@@ -12,7 +12,7 @@ export default function ConsumerEvent (props) {
     const eventTypes = props.provider.eventTypes
     
     return (
-            <div className='page'>
+            <div className="page">
             <p>Your fency logo</p>
             <h3>{props.link}</h3>
             <p>You can create an event here</p>
