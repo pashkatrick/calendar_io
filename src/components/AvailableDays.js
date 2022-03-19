@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
-import TimeSlot from '../components/TimeSlot'
+import TimeFrames from './TimeFrames'
 
 export default function AvailableDays() {
   
@@ -65,16 +65,12 @@ export default function AvailableDays() {
             }
     ])
 
-    function updateWeek (id, timeFrames) {
-        setWeek([...week].map(obj => {
-            if(obj.id === id) {
-              return {
-                ...obj,
-                timeFrames
-              }
-            }
-            else return obj;          
-        }))
+    function getAvaliableDays () {
+        const busyDays = []
+        week.forEach(day=>{
+            if (day.avaliable) busyDays.push(day.id)
+        })
+        return busyDays
     }
 
     function handleDay (value) {
@@ -97,16 +93,25 @@ export default function AvailableDays() {
         }))
     }
     
-    function setTime (time, id, frame, where) {
+    function setTime (from, to, id, frame) {
         const day = week.find(day=> day.id==id)
         const timeFrames = day.timeFrames
         timeFrames.map(f=> {
             if (f.id==frame) {
-                if (where=='from') f.from=time
-                else f.to=time
+                f.from=from;
+                f.to=to
             }
         })
-        updateWeek(id, timeFrames)
+
+        setWeek([...week].map(object => {
+            if(object.id === id) {
+              return {
+                ...object,
+                timeFrames
+              }
+            }
+            else return object;          
+        }))
     }
   
     function addTimeFrame (id) {
@@ -123,14 +128,34 @@ export default function AvailableDays() {
             to:1020,
         }
         timeFrames.push(newTime)
-        updateWeek(id, timeFrames)
+        setWeek([...week].map(object => {
+            if(object.id === id) {
+              return {
+                ...object,
+                timeFrames
+              }
+            }
+            else return object;          
+        }))
     }
+
+    useEffect (()=> {
+
+    })
 
     function deleteFrame (id, frame) {
         const day = week.find(day => day.id==id)
         const timeFrames = day.timeFrames.filter(gap => gap.id!=frame)
         if (day.timeFrames.length<2) day.avaliable=false
-        updateWeek(id, timeFrames)
+        setWeek([...week].map(object => {
+            if(object.id === id) {
+              return {
+                ...object,
+                timeFrames
+              }
+            }
+            else return object;          
+        }))
     }
 
     return (
@@ -144,7 +169,7 @@ export default function AvailableDays() {
             </div>
                 {day.avaliable && day.timeFrames.map(frame => 
                     <div className="dayTimeFrame">  
-                    <TimeSlot from={frame.from} to={frame.to} setTime={(time, where)=>setTime(time, day.id, frame.id, where)}/>
+                    <TimeFrames from={frame.from} to={frame.to} time={(from, to)=>setTime(from, to, day.id, frame.id)}/>
                     <div className="frameDelete" onClick={()=>{deleteFrame(day.id, frame.id)}} key={frame.id}></div>
                     </div>
                     )}
@@ -155,4 +180,3 @@ export default function AvailableDays() {
     </div>
   )
 }
-

@@ -57,7 +57,7 @@ code {
 .page {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
   background-color: #fcfcfc;
 
@@ -143,77 +143,15 @@ code {
   outline: none;
 }
 
-.regBox {
-  display: flex;
+.row {
+  display:flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  border: 1px solid #f4f3f3;
-  background-color: white;
-  width:max-content;
-  border-radius: 100px 100px 100px 100px;
-
 }
 
-.horizontal {
-  display: flex;
-  flex-direction: row;
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
-.likes {
-  position: absolute;
-  bottom: 0;
-}
-
-.iconHeart {
-  width:18px;
-  height: 18px;
-  margin-right: 4px;
-  background-image: url('/src/img/heart.png');
-}
-
-.person {
-  display: flex;
+.column {
+  display:flex;
   flex-direction: column;
-  position: relative;
-  width:200px;
-  margin-left:10px;
-  /* border: 1px solid green; */
-}
-
-.portrait {  
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  margin-bottom: 5px;
-}
-
-.photo, .photo2, .photo3, .photo4 {
-  display: block;
-  width: 200px;
-  height: 200px;
-  transition: transform .4s;
-  background-image: url('/src/img/portrait.png');
-}
-
-.photo2 {
-  background-image: url('/src/img/portrait2.jpg');
-}
-
-.photo3 {
-  background-image: url('/src/img/portrait3.jpg');
-}
-
-.photo4 {
-  background-image: url('/src/img/portrait4.jpg');
-}
-
-.photo:hover, .photo2:hover, .photo3:hover, .photo4:hover {
-  transform: scale(1.1);
-  transform-origin: 50% 50%;
+  margin-left: 3px;
 }
 
 .name {
@@ -241,8 +179,6 @@ code {
 .eventContainer {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 
 .cell {
@@ -353,7 +289,7 @@ code {
   border-radius: 6px;
   /* Position the tooltip text - see examples below! */
   position: absolute;
-  /* z-index: 1; */
+  z-index: 1;
   top: -5px;
   left: 150%;
 }
@@ -498,12 +434,15 @@ code {
   background-color: rgb(187, 187, 187);
 }
 
-
 .providerNavLogo {
   font-size: larger;
   color:white;
   font-family:Arial, Helvetica, sans-serif;
   margin-top:10px;
+}
+
+.providerNavLogo:hover {
+  cursor: default;
 }
 
 .providerContentItem {
@@ -512,11 +451,11 @@ code {
   background-color: red;
 }
 
-/* .invisibleFrame {
+.invisibleFrame {
   display: none;
   height: 0;
   width:0;
-} */
+}
 
 .dayFrame {
   display: flex;
@@ -537,6 +476,19 @@ code {
 .dayContainer {
   margin-top:30x;
   margin-bottom:30x;
+}
+
+.timeFrames {
+  width: 68px;
+  height:8em;
+  overflow-y:auto;
+	float:left;
+	position:fixed;
+  background-color:rgb(206, 206, 206);
+  padding:3px;
+  border-radius: 2px;
+  margin-top: 160px;
+  z-index: 2;
 }
 
 .frameDelete {
@@ -581,6 +533,29 @@ cursor: pointer;
   width: 180px;
 }
 
+.timeFrameFrom, .timeFrameTo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 3px;
+}
+
+.timeFrame:hover, .timeFrameConsumer, .timeFrameConsumerCurrent {
+  cursor: default;
+  background-color: #acaaaa;
+}
+
+.timeFrameActive {
+  background-color: black;
+  color: white;
+}
+
+.timeFrameActive:hover {
+  cursor: default;
+}
+
 .AvailableDays {
   display: flex;
   flex-direction: column;
@@ -597,15 +572,29 @@ cursor: pointer;
   margin-right: 10px;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
+.timeFormConsumer {
+  width: 100px;
+  font-size: large;
+  height: 13em;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-y:auto;
+  background-color:rgb(206, 206, 206);
+  padding:3px;
+  border-radius: 2px;
 }
 
-.activeFrame {
-  border:2px solid black;
+.timeFrameConsumer, .timeFrameConsumerCurrent {
+  text-align: center;
+  margin-bottom: 3px;
+  padding: 3px;
 }
 
-.columnFrame {
-  width: 82px;
+.timeRed {
+  background-color: scarlet;
+  color:white
+}
+
+.timeFrameConsumerCurrent {
+  background-color: black;
+  color:white;
 }
