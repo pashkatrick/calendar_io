@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProviderNavbar from '../components/ProviderNavbar'
 import ProviderTopNavbar from '../components/ProviderTopNavbar'
 import AvailableDays from '../components/AvailableDays'
-import Login from '../components/Login'
+import TimeSlot from '../components/TimeSlot'
 
 export default function Dashboard(props) {
   
-  const userIsLogged = true
+  const loggedUser = props.loggedUser
 
-  const unavailableDays=[1]
-
-  function loginUser () {
-  }
+  function setTime (time) {
+    console.log(time)
+  } 
 
   return (
       <div className="providerMainPage">
-        <ProviderNavbar userIsLogged={userIsLogged}/>
+        <ProviderNavbar loggedUser={loggedUser}/>
         <div className="providerContent">
           <ProviderTopNavbar/>         
           <AvailableDays/>
+          <br />
+          
         </div>
     </div>
   )

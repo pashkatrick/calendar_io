@@ -1,20 +1,20 @@
 import * as actions from "./actionTypes"
 import { EVENT_ADDED } from "./actionTypes"
 
-export function eventAdded (description) {
-    return {
+export function eventAdded (event) {
+    return [...state, {
         type: actions.EVENT_ADDED,
         payload: {
-            description
-        }
-    }
+            event
+          }
+    }]
 }
 
-export function dateAdded (state=[], event) {
+export function dateAdded (state=[],date) {
     return [...state, {
         type: actions.DATE_ADDED,
         payload: {
-            event
+            date
           }
     }]
 }

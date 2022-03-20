@@ -57,7 +57,7 @@ code {
 .page {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
   background-color: #fcfcfc;
 
@@ -167,13 +167,6 @@ code {
   bottom: 0;
 }
 
-.iconHeart {
-  width:18px;
-  height: 18px;
-  margin-right: 4px;
-  background-image: url('/src/img/heart.png');
-}
-
 .person {
   display: flex;
   flex-direction: column;
@@ -191,25 +184,7 @@ code {
   margin-bottom: 5px;
 }
 
-.photo, .photo2, .photo3, .photo4 {
-  display: block;
-  width: 200px;
-  height: 200px;
-  transition: transform .4s;
-  background-image: url('/src/img/portrait.png');
-}
 
-.photo2 {
-  background-image: url('/src/img/portrait2.jpg');
-}
-
-.photo3 {
-  background-image: url('/src/img/portrait3.jpg');
-}
-
-.photo4 {
-  background-image: url('/src/img/portrait4.jpg');
-}
 
 .photo:hover, .photo2:hover, .photo3:hover, .photo4:hover {
   transform: scale(1.1);
@@ -609,3 +584,4 @@ cursor: pointer;
 .columnFrame {
   width: 82px;
 }
+

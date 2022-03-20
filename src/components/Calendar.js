@@ -2,22 +2,29 @@ import React, { useEffect, useState } from 'react'
 import { Fragment } from 'react/cjs/react.development'
 import store from '../redux/store'
 import * as actions from '../redux/actionTypes'
+import * as variables from '../services/variables'
 
 function Calendar(props) {
   
-  const week=['S','M','T','W','T','F','S']
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  const wdays = [0,1,2,3,4,5,6];
+  const week = variables.CALENDAR_WEEKDAYS
+  const months = variables.CALENDAR_MONTHS
+  const wdays = variables.CALENDAR_DAYS
   const unavailableDays = props.unavailableDays
   const events = props.events
-  const currentMonth = getMonth()
   
+
+  //this part should be refactored 
   const [focus, setFocus ] = useState()
   const [month, setMonth ] = useState(getMonth())
   const [year, setYear ] = useState(getYear())
   const [state, setState] = useState({
     emptyDays:[],
     days:[],
+    //a new part
+    month:getMonth(),
+    year:getYear(),
+    monthNow:getMonth(),
+    yearNow:getYear()
   })
   
   function getMonth() {
@@ -34,12 +41,6 @@ function Calendar(props) {
     daysInMonth(month, year)
   },[])
 
-  function tooltipBuilder(eventId){
-    const event = events.find(event=>event.id==eventId)
-    const result = "event" + " at " + event.start + event.time + " for " + event.long + " minutes"
-    return result
-  }
-  
   function fillCalendar (num, month, year) {
     const days = []
     for (let i=1; i<=num; i++) {
@@ -55,22 +56,13 @@ function Calendar(props) {
 }
 
 function daysInMonth (month, year) {
-  const emptyDays = weekday(month, year)
+  const emptyDays = drawMonth(month, year)
   const num = new Date(year, month+1, 0).getDate()
   const days = fillCalendar(num, month, year)
   setState({...state, days, emptyDays})
 }
   
-  function findEvent (day) {
-    const currentDate = month+1+"_"+day+"_"+year
-    let activeEvents=[]
-    events.forEach(event=> {
-        if (event.date==currentDate) activeEvents.push(event)
-    })
-    return activeEvents
-  }
-
-  function weekday(month, year) {
+  function drawMonth(month, year) {
     const emptyDays = []
     const d = new Date(year, month, 1)
     const num = wdays[d.getDay()];
@@ -91,6 +83,8 @@ function daysInMonth (month, year) {
   }
 
   function backwardMonth (month) {
+    if (state.monthNow==month) return null
+    else {
     setMonth(month-1);
     if (month<1) {
       setYear(year-1);
@@ -99,13 +93,15 @@ function daysInMonth (month, year) {
     daysInMonth(month-1, year)
     setFocus(null)
   }
+  }
 
   function handleShowData (obj) {
     setFocus(obj)
     store.dispatch({
       type:actions.DATE_ADDED,
       payload:{
-        date:month+'_'+year+'_'+obj.id
+        date:month+'_'+year+'_'+obj.id+'_'+obj.wday,
+        week:props.provider.week
       }
   })
   }
@@ -133,19 +129,10 @@ function daysInMonth (month, year) {
       {state.days.map(obj=> 
         <div onClick={()=> handleShowData(obj)} className={`${focus==obj? 'focusCell':null} ${unavailableDays.filter(element=> element==obj.wday).length>0 ? 'cell':'activeCell'}`}>
             {obj.id}
-            <div className="events">    
-            {findEvent(obj.id).map(event=> 
-                <div className="event" key={event.id}>
-                  <span class="tooltip">{tooltipBuilder(event.id)}</span>
-                </div>
-                )}
-            </div>
         </div>
       )}
   </div>
   </div>
-
-            
 
   </Fragment>
 }

@@ -36,7 +36,7 @@
   width: 95px;
 }
 
-.testCurrent {
+.timeCurrent {
   padding: 3px;
 }
 
@@ -71,4 +71,29 @@
   align-content: center;
   justify-content: center;
   width:20px;
+}
+
+.timeFormConsumer {
+  width: 93px;
+  height:12em;
+  overflow-y:auto;
+	float:left;
+	position:absolute;
+  background-color: rgb(196, 196, 196);
+  z-index: 1;
+  margin-top: 2px;
+}
+
+.timeFrameConsumerCurrent {
+  background-color: rgb(74, 74, 74);
+  color:white;
+}
+
+.timeFrameConsumer, .timeFrameConsumerCurrent {
+  padding: 3px;
+}
+
+.timeFrameConsumer:hover {
+  cursor:default;
+  background-color: rgb(154, 154, 154);
 }
