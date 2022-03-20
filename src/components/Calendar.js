@@ -12,6 +12,8 @@ function Calendar(props) {
   const unavailableDays = props.unavailableDays
   const events = props.events
   
+
+  //this part should be refactored 
   const [focus, setFocus ] = useState()
   const [month, setMonth ] = useState(getMonth())
   const [year, setYear ] = useState(getYear())
