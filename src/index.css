@@ -497,6 +497,11 @@ code {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  /* border:1px solid green */
+}
+
+.unavailable {
+  margin-left: 0.3em;
 }
 
 .timeFrameContainer, .dayTimeFrame, .dayContainer {
@@ -507,6 +512,7 @@ code {
 .dayTimeFrame {
   justify-content: center;
   align-items: center;
+  margin-top: 0.5em;
 }
 
 .dayContainer {
@@ -519,6 +525,7 @@ code {
   height: 18px;
   background: url(../src/img/deleteButton.svg);
   border:none;
+  margin-left: 0.5em;
 }
 
 .frameAdd {
@@ -559,7 +566,6 @@ cursor: pointer;
 .AvailableDays {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .weekSaveButton {
