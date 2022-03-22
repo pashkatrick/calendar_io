@@ -2,7 +2,7 @@ import React from 'react'
 import ProviderNavbar from '../components/ProviderNavbar'
 import ProviderTopNavbar from '../components/ProviderTopNavbar'
 import AvailableDays from '../components/AvailableDays'
-import TimeSlot from '../components/TimeSlot'
+import Login from './components/Login'
 
 export default function Dashboard(props) {
   
@@ -18,6 +18,7 @@ export default function Dashboard(props) {
         <div className="providerContent">
           <ProviderTopNavbar/>         
           <AvailableDays/>
+          <Login/>
           <br />
           
         </div>

@@ -577,6 +577,11 @@ cursor: pointer;
   flex-direction: row;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
 .activeFrame {
   border:2px solid black;
 }
