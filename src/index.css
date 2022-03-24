@@ -473,7 +473,6 @@ code {
   background-color: rgb(187, 187, 187);
 }
 
-
 .providerNavLogo {
   font-size: larger;
   color:white;
@@ -487,17 +486,10 @@ code {
   background-color: red;
 }
 
-/* .invisibleFrame {
-  display: none;
-  height: 0;
-  width:0;
-} */
-
 .dayFrame {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  /* border:1px solid green */
 }
 
 .unavailable {
@@ -533,6 +525,7 @@ code {
   height: 18px;
   background: url(../src/img/addButton.svg);
   border:none;
+  margin-left: 0.5em;
 }
 
 .dropdownButtonOff {
