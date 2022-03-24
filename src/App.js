@@ -40,65 +40,6 @@ export default function App() {
         '15min',
         '30min'
       ],
-      week: [
-        {
-            id:1,
-            value:'Sunday',
-            available:true,
-            timeFrames: [
-                {id:1, from:0, to:45},
-                {id:2, from:60, to:120}
-            ],
-            },
-            {
-            id:2,
-            value:'Monday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:3,
-            value:'Tuesday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:4,
-            value:'Wednesday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:5,
-            value:'Thursday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:6,
-            value:'Friday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:7,
-            value:'Saturday',
-            available:false,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            }
-    ]
     },
     {
       id:2, 
@@ -108,65 +49,6 @@ export default function App() {
       eventTypes:[
         '15min',
       ],
-      week: [
-        {
-            id:1,
-            value:'Sunday',
-            available:false,
-            timeFrames: [
-                {id:1, from:0, to:45},
-                {id:2, from:60, to:120}
-            ],
-            },
-            {
-            id:2,
-            value:'Monday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:3,
-            value:'Tuesday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:4,
-            value:'Wednesday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:5,
-            value:'Thursday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:6,
-            value:'Friday',
-            available:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:7,
-            value:'Saturday',
-            available:false,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            }
-    ]
     }
   ]
 
@@ -205,7 +87,7 @@ export default function App() {
         {provider.eventTypes.map(type =>
           <Route key={provider.link}>
           <Route path={`/${provider.link}/${type}`} element={<ConsumerCal provider={provider}/>}/>
-          <Route path={`/${provider.link}/${type}/${currentDate}`} element={<EventComplete provider={provider} />}/>
+          <Route path={`/${provider.link}/${type}/${currentDate}`} element={<EventComplete provider={provider}/>}/>
           <Route path={`/success`} element={<EventSuccess/>}/>
           </Route>
           )}

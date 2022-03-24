@@ -3,7 +3,7 @@ import { useState } from 'react'
 import TimeSlot from '../components/TimeSlot'
 import * as variables from '../services/variables'
 
-export default function AvailableDays_experiment() {
+export default function AvailableDays() {
       
     const week = variables.CALENDAR_DAYS
     const weekDays = variables.CALENDAR_WEEKDAYS_FULL
@@ -72,7 +72,7 @@ export default function AvailableDays_experiment() {
     return (
     <div className="AvailableDays">
         {week.map(day=> 
-            <div className="dayFrame">
+            <div key={day} className="dayFrame">
             <div className="dayContainer">
             <input type="checkbox" onChange={()=>handleDay(day)} id={day} name={day} value={day} checked={showDay(day)}/>
             <label htmlFor={day}>{showDayName(day)}</label>
@@ -81,7 +81,7 @@ export default function AvailableDays_experiment() {
             </div>
             {timeFrames.map(frame=> {
                 if (showDay(day) && frame.day===day) {
-                    return <div className="dayTimeFrame">
+                    return <div key={frame.id} className="dayTimeFrame">
                     <TimeSlot from={frame.from} to={frame.to} setTime={(time, where)=>setTime(time, frame.id, where)}/>
                     <div className="frameDelete" onClick={()=>{deleteFrame(frame.id)}} key={frame.id}></div>
                     </div>

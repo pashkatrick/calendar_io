@@ -29,8 +29,8 @@ function Calendar(props) {
   }
   
   function handleUnavailableDay (day) {
-    if (month==state.monthNow) return state.dayNow>day.id
     if (unavailableDays.filter(e=> e==day.wday).length>0) return true
+    if (month==state.monthNow) return state.dayNow>day.id
     return false
   }
 
@@ -132,11 +132,11 @@ function daysInMonth (month, year) {
     {week.map(day=> 
         <div className="cell weekday">{day}</div>
         )}
-      {state.emptyDays.map(day=> 
+      {state.emptyDays.map(item=> 
         <div className="cell"></div>
         )}
       {state.days.map(obj=> 
-        <div onClick={()=> handleShowData(obj)} className={`${focus===obj && 'focusCell'}
+        <div key={obj.id} onClick={()=> handleShowData(obj)} className={`${focus===obj && 'focusCell'}
         ${handleUnavailableDay(obj)==true ? 'cell':'activeCell'}
         `}>
             {obj.id}

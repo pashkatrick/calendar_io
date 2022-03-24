@@ -19,9 +19,9 @@ export default function ConsumerEvent (props) {
             <h4>{props.provider.name}</h4>
             <p>has the following type of events</p>
             <div className="eventContainer">
-            {/* {eventTypes.map(event=> 
+            {eventTypes.map(event=> 
                 <NavLink key={event} className="buttonBright" to={`${event}`}>{event}</NavLink>
-                )} */}
+                )}
             </div>
     </div>
 );
