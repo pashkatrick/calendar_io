@@ -8,8 +8,9 @@ export default function fillArray () {
   }
 
 export function timeDecoder (num) {
-    const hour = Math.floor((num/15)/4)
+    let hour = Math.floor((num/15)/4)
     let min = num-(hour*4*15)
+    if (num>=720) hour=hour-12
     if (min==0) min=min.toString()+'0'
     const m = num>=720 ? 'pm' : 'am'; 
     return (`${hour}:${min}${m}`)
