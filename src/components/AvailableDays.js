@@ -9,10 +9,10 @@ export default function AvailableDays_experiment() {
     const weekDays = variables.CALENDAR_WEEKDAYS_FULL
 
     const [timeFrames, setTimeFrames] = useState([    
-        {id:1, day:0, from:540, to:1020},
+        {id:1, day:0, from:540, to:600},
         {id:2, day:1, from:540, to:1020},
         {id:3, day:2, from:540, to:1020},
-        {id:4, day:0, from:540, to:1020},
+        {id:4, day:0, from:630, to:1020},
     ])
 
     function handleDay(day) {
