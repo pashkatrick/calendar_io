@@ -10,30 +10,20 @@ function Calendar(props) {
   const months = variables.CALENDAR_MONTHS
   const wdays = variables.CALENDAR_DAYS
   const unavailableDays = props.unavailableDays
-
+  const events = props.events
   
-  const [focus, setFocus ] = useState()
-  const [month, setMonth ] = useState(getMonth())
-  const [year, setYear ] = useState(getYear())
+  //this part should be refactored 
   const [state, setState] = useState({
     emptyDays:[],
     days:[],
-    dayNow:today(),
+    //a new part
+    focus:0,
+    month:getMonth(),
+    year:getYear(),
     monthNow:getMonth(),
     yearNow:getYear()
   })
   
-  function today () {
-    const today = new Date();
-    return today.getDate();
-  }
-  
-  function handleUnavailableDay (day) {
-    if (month==state.monthNow) return state.dayNow>day.id
-    if (unavailableDays.filter(e=> e==day.wday).length>0) return true
-    return false
-  }
-
   function getMonth() {
     const today = new Date();
     return today.getMonth();
@@ -41,11 +31,11 @@ function Calendar(props) {
 
   function getYear() {
     const today = new Date();
-    return today.getFullYear();
+    return today.getFullYear();;
   }
 
   useEffect (()=> {
-    daysInMonth(month, year)
+    daysInMonth(state.month, state.year)
   },[])
 
   function fillCalendar (num, month, year) {
@@ -80,50 +70,48 @@ function daysInMonth (month, year) {
   }
 
   function forwardMonth (month) {
-    setMonth(month+1);
+    setState({...state, month:month+1});
     if (month>=11) {
-      setYear(year+1);
-      setMonth(month-11)
+      setState({...state, year:state.year+1});
+      setState({...state, month:state.month-11})
     }
-    daysInMonth(month+1, year)
-    setFocus(null)
+    daysInMonth(state.month+1, state.year)
+    setState({...state, focus:null})
   }
 
   function backwardMonth (month) {
     if (state.monthNow==month) return null
     else {
-    setMonth(month-1);
+    setState({...state, month:state.month-1});
     if (month<1) {
-      setYear(year-1);
-      setMonth(month+11)
+      setState({...state, year:state.year-1});
+      setState({...state, month: state.month+11})
     }
-    daysInMonth(month-1, year)
-    setFocus(null)
+    daysInMonth(state.month-1, state.year)
+    setState({...state, focus:null})
   }
   }
 
   function handleShowData (obj) {
-    if (obj.id>=state.dayNow) {
-      setFocus(obj)
-      store.dispatch({
-        type:actions.DATE_ADDED,
-        payload:{
-          date:month+'_'+year+'_'+obj.id+'_'+obj.wday,
-          // week:props.provider.week
-        }
-    })
-    }
+    setState({...state, focus:obj})
+    store.dispatch({
+      type:actions.DATE_ADDED,
+      payload:{
+        date:state.month+'_'+state.year+'_'+obj.id+'_'+obj.wday,
+        week:props.provider.week
+      }
+  })
   }
-
-  return <Fragment>
   
+  return <Fragment>
+    
     <div className="calendarContainer">
     <div className="monthButtonsPanel">
-      <div className="monthArrow" onClick={()=>backwardMonth(month)}>
+      <div className="monthArrow" onClick={()=>backwardMonth(state.month)}>
         <div className="monthB"></div>
       </div>
-      <div> {months[month]} {year}</div>
-      <div className="monthArrow" onClick={()=>forwardMonth(month)}>
+      <div> {months[state.month]} {state.year}</div>
+      <div className="monthArrow" onClick={()=>forwardMonth(state.month)}>
         <div className="monthF"></div>
       </div>
     </div>
@@ -136,15 +124,12 @@ function daysInMonth (month, year) {
         <div className="cell"></div>
         )}
       {state.days.map(obj=> 
-        <div onClick={()=> handleShowData(obj)} className={`${focus===obj && 'focusCell'}
-        ${handleUnavailableDay(obj)==true ? 'cell':'activeCell'}
-        `}>
+        <div onClick={()=> handleShowData(obj)} className={`${state.focus==obj? 'focusCell':null} ${unavailableDays.filter(element=> element==obj.wday).length>0 ? 'cell':'activeCell'}`}>
             {obj.id}
         </div>
       )}
   </div>
   </div>
-
   </Fragment>
 }
 

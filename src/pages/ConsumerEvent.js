@@ -16,11 +16,12 @@ export default function ConsumerEvent (props) {
             <p>Your fency logo</p>
             <h3>{props.link}</h3>
             <p>You can create an event here</p>
-            <p>{props.provider.name} has the following type of events</p>
+            <h4>{props.provider.name}</h4>
+            <p>has the following type of events</p>
             <div className="eventContainer">
-            {eventTypes.map(event=> 
+            {/* {eventTypes.map(event=> 
                 <NavLink key={event} className="buttonBright" to={`${event}`}>{event}</NavLink>
-                )}
+                )} */}
             </div>
     </div>
 );

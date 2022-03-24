@@ -473,7 +473,6 @@ code {
   background-color: rgb(187, 187, 187);
 }
 
-
 .providerNavLogo {
   font-size: larger;
   color:white;
@@ -487,16 +486,14 @@ code {
   background-color: red;
 }
 
-/* .invisibleFrame {
-  display: none;
-  height: 0;
-  width:0;
-} */
-
 .dayFrame {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+}
+
+.unavailable {
+  margin-left: 0.3em;
 }
 
 .timeFrameContainer, .dayTimeFrame, .dayContainer {
@@ -507,6 +504,7 @@ code {
 .dayTimeFrame {
   justify-content: center;
   align-items: center;
+  margin-top: 0.5em;
 }
 
 .dayContainer {
@@ -519,6 +517,7 @@ code {
   height: 18px;
   background: url(../src/img/deleteButton.svg);
   border:none;
+  margin-left: 0.5em;
 }
 
 .frameAdd {
@@ -526,6 +525,7 @@ code {
   height: 18px;
   background: url(../src/img/addButton.svg);
   border:none;
+  margin-left: 0.5em;
 }
 
 .dropdownButtonOff {
@@ -559,7 +559,6 @@ cursor: pointer;
 .AvailableDays {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .weekSaveButton {
@@ -575,6 +574,11 @@ cursor: pointer;
 .row {
   display: flex;
   flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .activeFrame {

@@ -8,10 +8,28 @@ import ProviderEvents from './pages/ProviderEvents';
 import Account from './pages/Account';
 import Dashboard from './pages/Dashboard';
 import { useSelector } from 'react-redux';
+import LoginPage from './pages/LoginPage';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import SignUpPage from './pages/SignUpPage';
 
 export default function App() {
 
-  
+  const [routes, setRoutes] =useState([])
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const {data}  = await axios.get("http://localhost:5000/users");
+        setRoutes(data.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetch();
+  }, [])
+    
+
   const providers = [
     {
       id:1, 
@@ -171,16 +189,21 @@ export default function App() {
   return (
     <div>
       <Routes>
-      {loggedUser.logged && <Route path={`/login/${loggedUser.link}`} element={<Dashboard user={loggedUser}/>}/>}
-      {loggedUser.logged && <Route path={`/login/${loggedUser.link}/dashboard`} element={<Dashboard user={loggedUser}/>}/>}
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/events" element={<ProviderEvents/>}/>
       <Route path="/account" element={<Account/>}/>
+      <Route path="/login" element={<LoginPage/>}/>
+      <Route path="/signup" element={<SignUpPage/>}/>
+      
+      {routes.map(_provider => 
+            <Route key={_provider.name} path={`${_provider.nick_name}`} element={<ConsumerEvent provider={_provider}/>}/>
+            )}
+      
       {providers.map(provider=> 
-        <Route>
+        <Route key={provider.link}>
         <Route path={`${provider.link}`} element={<ConsumerEvent provider={provider}/>}/>
         {provider.eventTypes.map(type =>
-          <Route>
+          <Route key={provider.link}>
           <Route path={`/${provider.link}/${type}`} element={<ConsumerCal provider={provider}/>}/>
           <Route path={`/${provider.link}/${type}/${currentDate}`} element={<EventComplete provider={provider} />}/>
           <Route path={`/success`} element={<EventSuccess/>}/>
@@ -192,6 +215,7 @@ export default function App() {
       <Route path="/" exact element={<Dashboard/>}/>  
       <Route path="*" exact element={<NotFound/>}/>  
       </Routes>
+      
     </div>
   )
 }

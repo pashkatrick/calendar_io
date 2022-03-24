@@ -1,136 +1,72 @@
 import React from 'react'
 import { useState } from 'react'
 import TimeSlot from '../components/TimeSlot'
+import * as variables from '../services/variables'
 
-export default function AvailableDays() {
-  
-    const loggedUser = ''
-    
-    const [week, setWeek] = useState([
-        {
-            id:1,
-            value:'Sunday',
-            avaliable:false,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ],
-            },
-            {
-            id:2,
-            value:'Monday',
-            avaliable:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:3,
-            value:'Tuesday',
-            avaliable:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:4,
-            value:'Wednesday',
-            avaliable:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:5,
-            value:'Thursday',
-            avaliable:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:6,
-            value:'Friday',
-            avaliable:true,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            },
-            {
-            id:7,
-            value:'Saturday',
-            avaliable:false,
-            timeFrames: [
-                {id:1, from:540, to:1020}
-            ]
-            }
+export default function AvailableDays_experiment() {
+      
+    const week = variables.CALENDAR_DAYS
+    const weekDays = variables.CALENDAR_WEEKDAYS_FULL
+
+    const [timeFrames, setTimeFrames] = useState([    
+        {id:1, day:0, from:540, to:600},
+        {id:2, day:1, from:540, to:1020},
+        {id:3, day:2, from:540, to:1020},
+        {id:4, day:0, from:630, to:1020},
     ])
 
-    function updateWeek (id, timeFrames) {
-        setWeek([...week].map(obj => {
-            if(obj.id === id) {
-              return {
-                ...obj,
-                timeFrames
+    function handleDay(day) {
+        const currentFrame = timeFrames.find(frame=> frame.day===day)
+        if (!currentFrame) addFrame(day)
+        else {
+           const frames = timeFrames.filter(frame=> frame.day!==day)
+           setTimeFrames([...frames])
+        }
+    }
+
+    function showDay (day) {
+        const frames = timeFrames.filter(frame=> frame.day===day)
+        if (frames.length>0) return true
+        else return false
+    }
+
+    function showDayName (day) {
+        return weekDays[day]
+    }
+
+    function setTime (time, frameId, where) {
+        const currentFrame = timeFrames.find(frame=> frame.id===frameId)
+        if (where=='to') currentFrame.to=time
+        else currentFrame.from=time
+        setTimeFrames([...timeFrames].map(obj=> {
+            if (obj.id === frameId) {
+                return {
+                  ...obj,
+                  currentFrame
+                }
               }
-            }
-            else return obj;          
+              else return obj; 
         }))
     }
 
-    function handleDay (value) {
-        let currentDay = week.find(day=> day.value==value)
-        const avaliable=!currentDay.avaliable        
-        const item = {
-            id:1,
-            from:540,
-            to:1020
-        }
-        currentDay.timeFrames=[]
-        currentDay.timeFrames.push(item)
-        setWeek([...week].map(object => {
-            if(object.value === value) {
-              return {...object,
-                  avaliable
-              }
-            }
-            else return object;          
-        }))
-    }
-    
-    function setTime (time, id, frame, where) {
-        const day = week.find(day=> day.id==id)
-        const timeFrames = day.timeFrames
-        timeFrames.map(f=> {
-            if (f.id==frame) {
-                if (where=='from') f.from=time
-                else f.to=time
-            }
-        })
-        updateWeek(id, timeFrames)
-    }
-  
-    function addTimeFrame (id) {
-        const day = week.find(day=> day.id==id)
-        const timeFrames = day.timeFrames
+    function addFrame (day) {
         let newId = 1
         timeFrames.forEach(frame=> {
             if (frame.id>newId) newId=frame.id
         })
         newId++
-        const newTime = {
+        const newFrame = {
             id:newId,
+            day:day,
             from:540,
             to:1020,
         }
-        timeFrames.push(newTime)
-        updateWeek(id, timeFrames)
+        setTimeFrames([...timeFrames, newFrame])
     }
 
-    function deleteFrame (id, frame) {
-        const day = week.find(day => day.id==id)
-        const timeFrames = day.timeFrames.filter(gap => gap.id!=frame)
-        if (day.timeFrames.length<2) day.avaliable=false
-        updateWeek(id, timeFrames)
+    function deleteFrame (frameId) {
+        const frames = timeFrames.filter(frame=> frame.id!==frameId)
+        setTimeFrames([...frames])
     }
 
     return (
@@ -138,21 +74,22 @@ export default function AvailableDays() {
         {week.map(day=> 
             <div className="dayFrame">
             <div className="dayContainer">
-            <input type="checkbox" onChange={()=>handleDay(day.value)} id={day.value} name={day.value} value={day.value} checked={day.avaliable}/>
-            <label htmlFor={day.value}>{day.value}</label>
-            {day.avaliable && <button className="frameAdd" onClick={()=>addTimeFrame(day.id)}></button>}
+            <input type="checkbox" onChange={()=>handleDay(day)} id={day} name={day} value={day} checked={showDay(day)}/>
+            <label htmlFor={day}>{showDayName(day)}</label>
+            {showDay(day)==true ? <button className="frameAdd" onClick={()=>addFrame(day)}></button>:
+                <div className="unavailable">is unavailable</div>}
             </div>
-                {day.avaliable && day.timeFrames.map(frame => 
-                    <div className="dayTimeFrame">  
-                    <TimeSlot from={frame.from} to={frame.to} setTime={(time, where)=>setTime(time, day.id, frame.id, where)}/>
-                    <div className="frameDelete" onClick={()=>{deleteFrame(day.id, frame.id)}} key={frame.id}></div>
+            {timeFrames.map(frame=> {
+                if (showDay(day) && frame.day===day) {
+                    return <div className="dayTimeFrame">
+                    <TimeSlot from={frame.from} to={frame.to} setTime={(time, where)=>setTime(time, frame.id, where)}/>
+                    <div className="frameDelete" onClick={()=>{deleteFrame(frame.id)}} key={frame.id}></div>
                     </div>
-                    )}
-                {!day.avaliable && <div>This day is unavailable</div>}      
-            </div>
+                }
+            }
             )}
-            <button className="weekSaveButton buttonBright">Save</button>
+            </div>
+        )}
     </div>
   )
 }
-
