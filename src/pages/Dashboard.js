@@ -1,23 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ProviderNavbar from '../components/ProviderNavbar'
 import ProviderTopNavbar from '../components/ProviderTopNavbar'
 import AvailableDays from '../components/AvailableDays'
+import { useNavigate } from 'react-router-dom'
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   
-  const userIsLogged = true
+  const loggedUser = localStorage.getItem('user')
+  const navigate = useNavigate()
 
-  const unavailableDays=[1]
-
-  function loginUser () {
-  
-  }
+  useEffect (()=> {
+    if (!loggedUser) navigate('/login')
+  })
 
   return (
       <div className="providerMainPage">
-        <ProviderNavbar userIsLogged={userIsLogged}/>
+        <ProviderNavbar loggedUser={loggedUser}/>
         <div className="providerContent">
-          <ProviderTopNavbar/>         
+          <ProviderTopNavbar loggedUser={loggedUser}/>         
           <AvailableDays/>
         </div>
     </div>

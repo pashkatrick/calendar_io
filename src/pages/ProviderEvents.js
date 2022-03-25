@@ -5,11 +5,13 @@ import Events from '../components/Events'
 
 export default function ProviderEvents() {
   
+  const loggedUser = localStorage.getItem('user')
+
   return (
       <div className="providerMainPage">
-        <ProviderNavbar/>
+        <ProviderNavbar loggedUser={loggedUser}/>
         <div className="providerContent">
-          <ProviderTopNavbar/>
+          <ProviderTopNavbar loggedUser={loggedUser}/>
           <Events/>
         </div>
     </div>

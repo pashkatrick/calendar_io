@@ -15,7 +15,7 @@ import SignUpPage from './pages/SignUpPage';
 
 export default function App() {
 
-  const [routes, setRoutes] =useState([])
+  const [routes, setRoutes] =  useState([])
 
   useEffect(() => {
     const fetch = async () => {
@@ -52,14 +52,15 @@ export default function App() {
     }
   ]
 
+  const loggedUser = localStorage.getItem('user')
   const currentDate = useSelector(state=>state.chosenDate)
   
-  const loggedUser = {
-    id:1,
-    username:'Pavel Yudin',
-    link:'pashkatrick',
-    logged:true,
-  }
+  // const loggedUser = {
+  //   id:1,
+  //   username:'Pavel Yudin',
+  //   link:'pashkatrick',
+  //   logged:true,
+  // }
 
   // const loggedUser = {
   //   id:2,
@@ -94,7 +95,7 @@ export default function App() {
         
         </Route>
         )}
-      <Route path="/" exact element={<Dashboard/>}/>  
+      <Route path="/" exact element={<Dashboard loggedUser={loggedUser}/>}/>
       <Route path="*" exact element={<NotFound/>}/>  
       </Routes>
       

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Events() {
+export default function Events(props) {
   
     const events=[ 
         {id:1, date:'4_2_2022', providerName:'', status:'confirmed', description:'meeting', consumerId:2, from:0, to:15, type:15},
@@ -10,7 +10,6 @@ export default function Events() {
   
       function eventConfirm (id) {
         const event = events.filter(event=> event.id!=id)
-
       }
 
     return (

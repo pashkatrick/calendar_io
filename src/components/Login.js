@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function Login(props) {
+export default function Login() {
+
     const [state, setState] = useState({
         login:'',
         password:''
     })
     
+    const navigate = useNavigate()
 
     const server= "https://localhost:5000/"
     
@@ -19,7 +22,9 @@ export default function Login(props) {
         //   })
         //     .then((response) => response.json())
         //     console.log(result)
+        
         localStorage.setItem('user',state.login)
+        navigate("/dashboard")
     }
 
     return <div>

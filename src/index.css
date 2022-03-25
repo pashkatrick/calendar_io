@@ -444,11 +444,18 @@ code {
   width: calc(100% - 250px);
 }
 
-.providerTopNavbarButton {
+.loginButton {
+  margin-right: 50px;
+}
+
+.upperRightCornerButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   position: absolute;
   right:0;
-  margin-right: 10px;
+  margin-right: 30px;
 }
+
 
 .providerMainPage {
   display: flex;

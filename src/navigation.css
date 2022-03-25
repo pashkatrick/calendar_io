@@ -33,6 +33,18 @@
   border: 1px solid #fddd33;
 }
 
+.usernameDisplay {
+  text-decoration:none;
+  color:black;
+  font-weight: bold;
+  height: 40px;
+  line-height: 40px;
+}
+
+.usernameDisplay:hover {
+  cursor: default;
+}
+
 .button, .buttonActive {
   width: max-content;
   padding-left: 20px;
