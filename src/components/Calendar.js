@@ -103,13 +103,12 @@ function daysInMonth (month, year) {
   }
 
   function handleShowData (obj) {
-    if (obj.id>=state.dayNow) {
+    if (!handleUnavailableDay(obj)) {
       setFocus(obj)
       store.dispatch({
         type:actions.DATE_ADDED,
         payload:{
           date:month+'_'+year+'_'+obj.id+'_'+obj.wday,
-          // week:props.provider.week
         }
     })
     }
