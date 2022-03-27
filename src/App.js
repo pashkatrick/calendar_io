@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import SignUpPage from './pages/SignUpPage';
+import Wizard from './components/Wizard';
 
 export default function App() {
 
@@ -77,6 +78,7 @@ export default function App() {
       <Route path="/account" element={<Account/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/signup" element={<SignUpPage/>}/>
+      <Route path="/wizard" element={<Wizard/>}/>
       
       {routes.map(_provider => 
             <Route key={_provider.name} path={`${_provider.nick_name}`} element={<ConsumerEvent provider={_provider}/>}/>

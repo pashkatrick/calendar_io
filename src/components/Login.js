@@ -13,16 +13,6 @@ export default function Login() {
     const server= "https://localhost:5000/"
     
     function loginUser () {
-     
-        //  const result = fetch(`${server}`, {
-        //     method: 'GET'
-        //     // headers: new Headers({
-        //     //   name: `Leanne Graham`,
-        //     // }),
-        //   })
-        //     .then((response) => response.json())
-        //     console.log(result)
-        
         localStorage.setItem('user',state.login)
         navigate("/dashboard")
     }
