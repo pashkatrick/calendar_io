@@ -6,13 +6,17 @@ export default function TimeZones(props) {
     
     const ref = useRef()
 
-    const zones = variable.TIME_ZONES
-    
+    const zones = variable.TIME_ZONE_NAMES
+
     const [state, setState] = useState({
         toggle:false,
         currentZone:zones[0]
     })
     
+    function getCurrentZone () {
+        return new Date().toString().match(/([-\+][0-9]+)\s/)[1]
+    }
+
     function toggle () {
         const result = !state.toggle
         setState({...state, toggle:result})
@@ -20,7 +24,8 @@ export default function TimeZones(props) {
     
     function setTimeZone (zone) {
         setState({toggle:false, currentZone:zone})
-        // props.setTime(zone)
+        console.log(zone)
+        // props.setTimeZone(zone)
     }
 
     useOutsideClick(ref, () => {
@@ -29,6 +34,7 @@ export default function TimeZones(props) {
     
     return (
     <div ref={ref} className="columnFrame">
+        {/* <p>{getCurrentZone()}</p> */}
         <div className={`rowFrame timezone ${state.toggle? "activeFrame":"nonActiveFrame"}`}>
             <div className="timezone">{state.currentZone}</div>
             <div className={`${!state.toggle? "arrowDown" : "arrowUp"}`} onClick={()=>toggle()}></div>

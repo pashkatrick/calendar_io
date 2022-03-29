@@ -13,6 +13,19 @@ code {
     monospace;
 }
 
+.input {
+  width:inherit;
+  height: 30px;
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding-left: 10px;
+  margin-top:2px;
+}
+
+.input:focus {
+  border-color:black;
+  outline: none;
+}
 
 .anime {
   animation-name: iconAnimation;
@@ -503,6 +516,7 @@ code {
   margin-left: 0.3em;
 }
 
+
 .timeFrameContainer, .dayTimeFrame, .dayContainer {
   display: flex;
   flex-direction: row;  
@@ -596,3 +610,67 @@ cursor: pointer;
   width: 82px;
 }
 
+.timezone, .activeZone, .nonActiveZone {
+  width:355px; 
+  height: 30px; 
+  line-height: 30px; 
+  padding-left: 10px;
+}
+
+.nonActiveZone:hover {
+  cursor:default;
+  background-color: grey;
+}
+
+.timezones {
+  width:355px;
+  height:11em;
+  overflow-y:auto;
+	float:left;
+	position:absolute;
+  border:1px solid grey;
+  background-color: white;
+  z-index: 1;
+  margin-top: 3px;
+ }
+
+ .activeZone {
+  background-color: black;
+  color:white;
+ }
+
+ .zoneFrame {
+   width:555px;
+ }
+
+ .wizardFirst {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  width:auto;
+ }
+
+ .input_error {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  background-color: rgb(244, 170, 170);
+  border: 1px solid rgb(208, 71, 71);
+  border-radius: 2px;
+  color:rgb(208, 71, 71);
+ }
+
+ .wizard_button {
+  height: 30px;
+   text-align: center;
+   line-height: 30px;
+   color:white;
+   background-color: black;
+   border-radius: 2px;
+   margin-top: 10px;
+ }
+
+ .wizard_button:hover {
+   cursor:pointer;
+ }

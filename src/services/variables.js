@@ -17,7 +17,7 @@ export const WIZARD_PHRASES = ['',
     "Add brief information about you and a photo to help people understand who they're booking a meeting with.",
 ]
 
-export const TIME_ZONES = [
+export const TIME_ZONE_NAMES = [
     '(GMT+2:00) Eastern European Time',
     '(GMT+2:00) Egypt Standard Time',
     '(GMT+3:00) Eastern African Time',

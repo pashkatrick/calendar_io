@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import Input from '../components/Input'
 
-export default function SignUp(props) {
+export default function SignUp (props) {
     const [state, setState] = useState({
       name:'',
       nick_name:'',
       bio:'',
       alert:''
     })
+
+    const Joi = require('joi');
     
+    const schemaText = Joi.object({value: Joi.string()})
+    const schema = Joi.object({value: Joi.string().min(3).required()})
+
     const server= "http://localhost:5000"
     
     function loginUser () {
@@ -41,20 +47,28 @@ export default function SignUp(props) {
       .catch(function (error) {
         console.log(error);
       });
+    }
 
+    function setValue(value) {
+      
+    }
+
+    function test () {
+      const {error} = schema.validate({value:state.value})
+      
     }
 
     return <div>
         <div className="column">
           <p>Create a new user:</p>
           <div>{state.alert}</div>
-          <input placeholder="name" type="text" onChange={e=> setState({...state, name: e.target.value})} />
+          <Input placeholder={'name'} name={'Name'} type={'text'} schema={schema} width={'350px'}/>
             <br />
-            <input placeholder="nickname" type="text" onChange={e=> setState({...state, nick_name: e.target.value})} />
+            <Input placeholder={'username'} name={'Username'} type={'text'} schema={schema} width={'350px'}/>
             <br />
-            <textarea placeholder="bio" type="textarea" onChange={e=> setState({...state,bio: e.target.value})} />
+            <Input placeholder={'Some text'} name={'Bio'} type={'textarea'} schema={schemaText} width={'350px'}/>
             <br />
-          <button classname="button" type="submit" onClick={()=>loginUser()}>Sign In</button>
+          <button classname="button" type="submit" onClick={()=>test()}>Sign In</button>
         </div>
     </div>
 }

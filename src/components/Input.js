@@ -1,29 +1,46 @@
 import React, { useState } from 'react'
-
+import { Fragment } from 'react/cjs/react.development';
 export default function Input(props) {
   
     const [state, setState] = useState({
         value:'',
-        error:''
+        errorMessage:''
     })
-    // schema should be taken from props
 
     const Joi = require('joi');
     const schema=props.schema
-    
 
     function validate () {
+        setState({...state, errorMessage:''})
         const {error} = schema.validate({value:state.value})
-        if (error) console.log({error})
-        else return null
+        if (error) { 
+            const {message} = error
+            const field = props.name + message.substr(7)
+            setState({...state, errorMessage:field})
+        } else {
+            props.set(state.value)
+        }
+    }
+
+    function cleanErrors () {
+        setState({...state, errorMessage:''})
     }
 
     return (
+    <Fragment>
+    <label htmlFor={props.name}>{props.name}</label>
+    
+    {state.errorMessage && <div className='input_error' style={{width:props.width}}>{state.errorMessage}</div>}
+    
     <input className='input' 
+    style={{width:props.width}}
     onChange={e=>setState({...state, value: e.target.value})}
-    onClick = {()=>validate()}
+    onFocus={()=>cleanErrors()}
+    onBlur = {()=>validate()}
     value={state.value}
-    placeholder={props.text} 
+    name={props.name}
+    placeholder={props.placeholder}
     type={props.type} />
+    </Fragment>
   )
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import * as variables from '../services/variables'
 import Calendar from './Calendar'
+import WizardFirstScreen from '../components/WizardFirstScreen'
+
 
 export default function Wizard() {
   
@@ -29,8 +31,8 @@ export default function Wizard() {
             )}
         </div>
         
-        <div className="wizardContent">
-            {step==1 && <div>Content...</div>}
+        <div className='wizardContent'>
+            {step==1 && <WizardFirstScreen/>}
             {step==2 && <Calendar unavailableDays={[1]}/>}
             {step==3 && <div>More Content</div>}
         </div>
