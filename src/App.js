@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useLocation, Navigate, useNavigate, useParams} from 'react-router-dom';
 import ConsumerCal from './pages/ConsumerCal';
 import NotFound from './pages/NotFound';
 import EventSuccess from './components/EventSuccess';
@@ -9,67 +9,58 @@ import Account from './pages/Account';
 import Dashboard from './pages/Dashboard';
 import { useSelector } from 'react-redux';
 import LoginPage from './pages/LoginPage';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import SignUpPage from './pages/SignUpPage';
 import Wizard from './components/Wizard';
+import { current } from 'immer';
 
 export default function App() {
 
-  const [routes, setRoutes] =  useState([])
+  const location=useLocation()
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const {data}  = await axios.get("http://localhost:5000/users");
-        setRoutes(data.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetch();
-  }, [])
-    
-
-  const providers = [
-    {
-      id:1, 
-      link:'pashkatrick', 
-      name:'Pavel Yudin', 
-      timezone:'',
-      eventTypes:[
-        '15min',
-        '30min'
-      ],
-    },
-    {
-      id:2, 
-      link:'a5hot', 
-      name: 'Anton Yudin',
-      timezone:'',
-      eventTypes:[
-        '15min',
-      ],
-    }
-  ]
-
-  const loggedUser = localStorage.getItem('user')
-  const currentDate = useSelector(state=>state.chosenDate)
+  const [state, setState] = useState({
+    providers:[],
+    provider:null,
+    link:null,
+    path:location.pathname.substring(1)
+  })
   
-  // const loggedUser = {
-  //   id:1,
-  //   username:'Pavel Yudin',
-  //   link:'pashkatrick',
-  //   logged:true,
-  // }
 
-  // const loggedUser = {
-  //   id:2,
-  //   username:'Anton Iudin',
-  //   link:'a5hot',
-  //   logged:true,
-  // }
+  function loadUsers() {
+    var axios = require('axios');
+  
+  var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:5000/users',
+  headers: { }
+  };
 
+  const dat = axios(config)
+    axios(config)
+    .then(function (response) {
+    setState({...state, providers:response.data.data})
+    })
+  }
+  
+  function loadProvider (provider) {
+    setState({...state, provider, providers:[], link:provider.username})
+  }
+  
+  useEffect (()=> {
+    // create the condition instead to avoid loading data when static links use
+    if (state.path) {
+      loadUsers()
+    }
+  },[])
+
+  useEffect (()=> {
+      const requiredUser = state.providers.find(user=> user.username==state.path)
+      if (requiredUser) loadProvider(requiredUser)
+  }, [state.providers])
+  
+  const loggedUser = localStorage.getItem('user')
+  // const currentDate = useSelector(state=>state.chosenDate)
+  
   return (
     <div>
       <Routes>
@@ -78,25 +69,9 @@ export default function App() {
       <Route path="/account" element={<Account/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/signup" element={<SignUpPage/>}/>
-      <Route path="/wizard" element={<Wizard/>}/>
       
-      {routes.map(_provider => 
-            <Route key={_provider.name} path={`${_provider.nick_name}`} element={<ConsumerEvent provider={_provider}/>}/>
-            )}
-      
-      {providers.map(provider=> 
-        <Route key={provider.link}>
-        <Route path={`${provider.link}`} element={<ConsumerEvent provider={provider}/>}/>
-        {provider.eventTypes.map(type =>
-          <Route key={provider.link}>
-          <Route path={`/${provider.link}/${type}`} element={<ConsumerCal provider={provider}/>}/>
-          <Route path={`/${provider.link}/${type}/${currentDate}`} element={<EventComplete provider={provider}/>}/>
-          <Route path={`/success`} element={<EventSuccess/>}/>
-          </Route>
-          )}
-        
-        </Route>
-        )}
+      <Route exact path={`/${state.link}`} element={<ConsumerEvent provider={state.provider} />}/>
+
       <Route path="/" exact element={<Dashboard loggedUser={loggedUser}/>}/>
       <Route path="*" exact element={<NotFound/>}/>  
       </Routes>
