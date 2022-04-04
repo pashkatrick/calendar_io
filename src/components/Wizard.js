@@ -1,24 +1,50 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as variables from '../services/variables'
 import Calendar from './Calendar'
 import WizardFirstScreen from '../components/WizardFirstScreen'
+import AvailableDays from '../components/AvailableDays'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 
 
 export default function Wizard() {
   
+    
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const {id} = useParams()    
     const [step, setStep] = useState(1)
     const titles = variables.WIZARD_TITLES
     const descriptions = variables.WIZARD_PHRASES
     const lines = [0,1,2,3]
+
+
+    
+    // useEffect (()=>{
+    //     fetch("https://jsonplaceholder.typicode.com/users")
+    //     .then(response => response.json())
+    //     .then(data => setUsers(data))
+    // },[])
+    
+
+    // useEffect (()=> {
+    //   if (id=='oleg') navigate('*')
+    // })
+
+    
+
+    
     
     function stepCnange (param) {
         setStep(step+param)
     }
 
+
     return (
     <div className='page dark'>
         
         <div className="wizard">
+            <p>{id}</p>
             <div className="wizardHeader">
             <h2 className='wizardTitle'>{titles[step]}</h2>
             <div className='wizardDiscription'>{descriptions[step]}</div>
@@ -33,7 +59,7 @@ export default function Wizard() {
         
         <div className='wizardContent'>
             {step==1 && <WizardFirstScreen/>}
-            {step==2 && <Calendar unavailableDays={[1]}/>}
+            {step==2 && <AvailableDays/>}
             {step==3 && <div>More Content</div>}
         </div>
         

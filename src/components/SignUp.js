@@ -23,7 +23,7 @@ export default function SignUp (props) {
       var data = JSON.stringify({
         "user": {
           "name": state.name,
-          "nick_name": state.nick_name,
+          "username": state.nick_name,
           "avatar": "",
           "bio": state.bio,
           "lang": "ru"
@@ -49,14 +49,13 @@ export default function SignUp (props) {
       });
     }
 
-    function setValue(value) {
+    // function setValue(value) {
       
-    }
+    // }
 
-    function test () {
-      const {error} = schema.validate({value:state.value})
-      
-    }
+    // function test () {
+    //   const {error} = schema.validate({value:state.value})
+    // }
 
     return <div>
         <div className="column">
@@ -68,7 +67,7 @@ export default function SignUp (props) {
             <br />
             <Input placeholder={'Some text'} name={'Bio'} type={'textarea'} schema={schemaText} width={'350px'}/>
             <br />
-          <button classname="button" type="submit" onClick={()=>test()}>Sign In</button>
+          <button classname="button" type="submit" onClick={()=>loginUser()}>Sign In</button>
         </div>
     </div>
 }
