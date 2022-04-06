@@ -10,7 +10,6 @@ function Calendar(props) {
   const months = variables.CALENDAR_MONTHS
   const wdays = variables.CALENDAR_DAYS
   const unavailableDays = props.unavailableDays
-
   
   const [focus, setFocus ] = useState()
   const [month, setMonth ] = useState(getMonth())

@@ -15,7 +15,7 @@ import Wizard from './components/Wizard';
 import { current } from 'immer';
 
 export default function App() {
-
+  
   const location=useLocation()
 
   const [state, setState] = useState({
@@ -48,9 +48,7 @@ export default function App() {
   
   useEffect (()=> {
     // create the condition instead to avoid loading data when static links use
-    if (state.path) {
-      loadUsers()
-    }
+    if (state.path) loadUsers()
   },[])
 
   useEffect (()=> {
@@ -59,7 +57,7 @@ export default function App() {
   }, [state.providers])
   
   const loggedUser = localStorage.getItem('user')
-  // const currentDate = useSelector(state=>state.chosenDate)
+  const currentDate = useSelector(state=>state.chosenDate)
   
   return (
     <div>
@@ -69,8 +67,12 @@ export default function App() {
       <Route path="/account" element={<Account/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/signup" element={<SignUpPage/>}/>
-      
+      <Route path="/success" element={<EventSuccess/>}/>
+      <Route path="/wizard" element={<Wizard/>}/>
+
       <Route exact path={`/${state.link}`} element={<ConsumerEvent provider={state.provider} />}/>
+      <Route exact path={`/${state.link}/:type/`} element={<ConsumerCal provider={state.provider} />}/>
+      <Route exact path={`/${state.link}/:type/${currentDate}`} element={<EventComplete provider={state.provider} />}/>
 
       <Route path="/" exact element={<Dashboard loggedUser={loggedUser}/>}/>
       <Route path="*" exact element={<NotFound/>}/>  

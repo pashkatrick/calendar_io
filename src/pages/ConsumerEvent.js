@@ -9,9 +9,7 @@ import { NavLink } from 'react-router-dom';
 export default function ConsumerEvent (props) {
 
     const [types, setTypes] = useState([])
-    //have to fetch from the server by loading provider
     const providerId = props.provider._id
-    // const eventTypes = props.provider.eventTypes
     
     useEffect (()=> {
         const axios = require('axios');

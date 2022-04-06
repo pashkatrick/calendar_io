@@ -18,27 +18,9 @@ export default function Wizard() {
     const descriptions = variables.WIZARD_PHRASES
     const lines = [0,1,2,3]
 
-
-    
-    // useEffect (()=>{
-    //     fetch("https://jsonplaceholder.typicode.com/users")
-    //     .then(response => response.json())
-    //     .then(data => setUsers(data))
-    // },[])
-    
-
-    // useEffect (()=> {
-    //   if (id=='oleg') navigate('*')
-    // })
-
-    
-
-    
-    
     function stepCnange (param) {
         setStep(step+param)
     }
-
 
     return (
     <div className='page dark'>
