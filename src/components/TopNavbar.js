@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Login from './Login'
 
-export default function ProviderTopNavbar(props) {
+export default function TopNavbar(props) {
   
   
   const loggedUser = props.loggedUser

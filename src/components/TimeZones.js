@@ -34,14 +34,11 @@ export default function TimeZones(props) {
     
     return (
     <div ref={ref} className="columnFrame">
-        {/* <p>{getCurrentZone()}</p> */}
         <div className={`rowFrame timezone ${state.toggle? "activeFrame":"nonActiveFrame"}`}>
             <div className="timezone">{state.currentZone}</div>
             <div className={`${!state.toggle? "arrowDown" : "arrowUp"}`} onClick={()=>toggle()}></div>
         </div>
-        
         <div className={`${state.toggle? "timezones":"timeFrameInv"}`}>
-        
         {zones.map(zone=> 
             <div onClick={()=>{setTimeZone(zone)}} className={`${zone==state.currentZone? "activeZone":"nonActiveZone"}`} key={zone}>{zone}</div>
             )}
