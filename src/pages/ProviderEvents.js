@@ -1,6 +1,6 @@
 import React from 'react'
 import ProviderNavbar from '../components/ProviderNavbar'
-import ProviderTopNavbar from '../components/ProviderTopNavbar'
+import ProviderTopNavbar from '../components/TopNavbar'
 import Events from '../components/Events'
 
 export default function ProviderEvents() {
@@ -9,11 +9,7 @@ export default function ProviderEvents() {
 
   return (
       <div className="providerMainPage">
-        <ProviderNavbar loggedUser={loggedUser}/>
-        <div className="providerContent">
-          <ProviderTopNavbar loggedUser={loggedUser}/>
-          <Events/>
-        </div>
-    </div>
+        <Events/>
+      </div>
   )
 }

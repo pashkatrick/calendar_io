@@ -9,8 +9,6 @@ export default function Login() {
     })
     
     const navigate = useNavigate()
-
-    const server= "https://localhost:5000/"
     
     function loginUser () {
         localStorage.setItem('user',state.login)

@@ -1,12 +1,7 @@
 import React from 'react'
-import ProviderNavbar from '../components/ProviderNavbar'
-import ProviderTopNavbar from '../components/ProviderTopNavbar'
-import Calendar from '../components/Calendar'
 
 export default function Account() {
   
-  const loggedUser = localStorage.getItem('user')
-
   const unavailableDays=[1]
   const events=[ 
     {id:1, date:'4_2_2022', providerName:'', consumerId:2, start:'5', time:'pm', long:15},
@@ -16,12 +11,7 @@ export default function Account() {
 
 
   return (
-      <div className="providerMainPage">
-        <ProviderNavbar loggedUser={loggedUser}/>
-        <div className="providerContent">
-          <ProviderTopNavbar loggedUser={loggedUser}/>         
-          <Calendar unavailableDays={unavailableDays} events={events}/>
-        </div>
-    </div>
+    <div className=''>
+      </div>
   )
 }
