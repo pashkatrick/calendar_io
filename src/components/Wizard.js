@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import * as variables from '../services/variables'
 import Calendar from './Calendar'
 import WizardFirstScreen from '../components/WizardFirstScreen'
 import AvailableDays from '../components/AvailableDays'
-import { useNavigate, useLocation, useParams } from 'react-router-dom'
+
 
 
 export default function Wizard() {
   
-    
     const location = useLocation()
     const navigate = useNavigate()
 

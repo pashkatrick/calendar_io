@@ -1,5 +1,4 @@
 import React from 'react'
-import ProviderNavbar from '../components/ProviderNavbar'
 import ProviderTopNavbar from '../components/TopNavbar'
 import Events from '../components/Events'
 

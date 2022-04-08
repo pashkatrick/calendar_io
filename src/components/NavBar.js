@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../navigation.css'
 import { NavLink, useLocation } from 'react-router-dom'
-import styled from "styled-components";
 
 export default function NavBar(props) {
   
