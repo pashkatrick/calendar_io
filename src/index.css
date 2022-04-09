@@ -479,10 +479,12 @@ code {
 
 .providerContent {
   margin-left: 250px;
-  margin-top: 52px;
 }
 
 .menu_button, .menu_button_active {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
   font-style: none;
   font-weight: 600;
   text-decoration: none;
@@ -497,10 +499,33 @@ code {
   color:black;
 }
 
+.menu_button_active > .icon_active {
+  filter:brightness(0%)
+}
+
+
 .menu_button:hover {
   background-color: rgb(187, 187, 187);
   color:rgb(38, 38, 38);
 }
+
+.menu_button:hover:nth-child(1) > .icon_event{
+  filter: brightness(0%);
+}
+
+.menu_button:hover:nth-child(2) > .icon_availability{
+  filter: brightness(0%);
+}
+
+.menu_button:hover:nth-child(3) > .icon_bookings{
+  filter: brightness(0%);
+}
+
+.menu_button:hover:nth-child(4) > .icon_settings{
+  filter: brightness(0%);
+}
+
+
 
 .providerNavLogo {
   font-size: larger;
@@ -508,7 +533,7 @@ code {
   width:200px;
   color:black;
   font-family:Arial, Helvetica, sans-serif;
-  margin-top:10px;
+  margin-top:20px;
 }
 
 .providerContentItem {
@@ -657,7 +682,6 @@ cursor: pointer;
  .wizardFirst {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   width:auto;
  }
@@ -703,7 +727,7 @@ cursor: pointer;
  }
 
  ._page {
-  padding:20px;
+  padding:30px;
   background-color: #F5F5F5;
  }
 
@@ -763,3 +787,24 @@ cursor: pointer;
   background: url('./img/calendar.png')
  }
 
+.menu_icon, .icon_event, .icon_bookings, .icon_settings, .icon_availability {
+  width:18px;
+  height:18px;
+  margin-right:10px;
+}
+
+.icon_event {
+  background: url('./img/icon_event.svg');
+}
+
+.icon_bookings {
+  background: url('./img/icon_bookings.svg');
+}
+
+.icon_availability {
+  background: url('./img/icon_availability.svg');
+}
+
+.icon_settings {
+  background: url('./img/icon_settings.svg');
+}

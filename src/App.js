@@ -7,12 +7,11 @@ import EventSuccess from './components/EventSuccess';
 import ConsumerEvent from './pages/ConsumerEvent';
 import EventComplete from './pages/EventComplete';
 import ProviderEvents from './pages/ProviderEvents';
-import Account from './pages/Account';
+import Settings from './pages/Settings';
 import Availability from './pages/Availability';
 import SignUpPage from './pages/SignUpPage';
 import Wizard from './components/Wizard';
 import LeftNavbar from './components/LeftNavbar'
-import TopNavbar from './components/TopNavbar';
 import Login from './components/Login';
 import Bookings from './pages/Bookings';
 
@@ -69,11 +68,10 @@ export default function App() {
   return (
     <div>
       {menu()? <LeftNavbar/> : null}
-      {menu()? <TopNavbar loggedUser={loggedUser}/> : null}
       <div className={menu()? 'providerContent' : null}>
       <Routes>
       <Route path="/events" element={<ProviderEvents/>}/>
-      <Route path="/account" element={<Account/>}/>
+      <Route path="/settings" element={<Settings/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<SignUpPage/>}/>
       <Route path="/availability" element={<Availability/>}/>

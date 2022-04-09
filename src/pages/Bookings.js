@@ -16,8 +16,8 @@ export default function Bookings(props) {
       <br />
       <br />
       {screen===1 && <div className="booking_screen">
-        <div className="_title">No Upcoming bookings, yet</div>
-        <div className="_subtitle">You have no Upcoming bookings. As soon as someone books a time with you it will show up here.</div>
+        <span className="_title">No Upcoming bookings, yet</span>
+        <span className="_subtitle">You have no Upcoming bookings. As soon as someone books a time with you it will show up here.</span>
       </div>}
       {screen===2 && <div className="booking_screen">
         <div className="_title">No Past bookings, yet</div>
