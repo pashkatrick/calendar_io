@@ -3,7 +3,14 @@ import { NavLink } from 'react-router-dom'
 
 export default function Bookings(props) {
   
+  const titles = [
+    'Upcoming',
+    'Cancelled',
+    'Past'
+  ]
+  
   const screen = props.param
+  const title = titles[props.param-1]
 
   return (
     <div className='_page'>
@@ -15,18 +22,14 @@ export default function Bookings(props) {
       <div className="booking_line"></div>
       <br />
       <br />
-      {screen===1 && <div className="booking_screen">
-        <span className="_title">No Upcoming bookings, yet</span>
-        <span className="_subtitle">You have no Upcoming bookings. As soon as someone books a time with you it will show up here.</span>
-      </div>}
-      {screen===2 && <div className="booking_screen">
-        <div className="_title">No Past bookings, yet</div>
-        <div className="_subtitle">You have no Past bookings. As soon as someone books a time with you it will show up here.</div>
-      </div>}
-      {screen===3 && <div className="booking_screen">
-        <div className="_title">No Cancelled bookings, yet</div>
-        <div className="_subtitle">You have no Cancelled bookings. As soon as someone books a time with you it will show up here.</div>
-      </div>}
+      <div className="booking_screen">
+        <div className="column_center">
+        <div className="icon_bookings_white"></div>
+        <br />
+        <div className="_title">{`No ${title} bookings, yet`}</div>
+        <div className="_subtitle">{`You have no ${title} bookings. As soon as someone books a time with you it will show up here.`}</div>
+        </div>
       </div>
+    </div>
   )
 }
