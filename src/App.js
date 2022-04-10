@@ -6,7 +6,7 @@ import NotFound from './pages/NotFound';
 import EventSuccess from './components/EventSuccess';
 import ConsumerEvent from './pages/ConsumerEvent';
 import EventComplete from './pages/EventComplete';
-import ProviderEvents from './pages/ProviderEvents';
+import Events from './pages/Events';
 import Settings from './pages/Settings';
 import Availability from './pages/Availability';
 import SignUpPage from './pages/SignUpPage';
@@ -14,6 +14,7 @@ import Wizard from './components/Wizard';
 import LeftNavbar from './components/LeftNavbar'
 import Login from './components/Login';
 import Bookings from './pages/Bookings';
+
 
 export default function App() {
   
@@ -61,8 +62,8 @@ export default function App() {
   const currentDate = useSelector(state=>state.chosenDate)
   
   function menu() {
-    if (location!=='/wizard') return true
-    else return false
+    if (location=='/wizard') return false
+    else return true
   }
 
   return (
@@ -70,18 +71,17 @@ export default function App() {
       {menu()? <LeftNavbar/> : null}
       <div className={menu()? 'providerContent' : null}>
       <Routes>
-      <Route path="/events" element={<ProviderEvents/>}/>
+      <Route path="/events" element={<Events/>}/>
       <Route path="/settings" element={<Settings/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<SignUpPage/>}/>
       <Route path="/availability" element={<Availability/>}/>
+      <Route path="/availability/:id" element={<Availability/>}/>
       <Route path="/success" element={<EventSuccess/>}/>
       <Route path="/bookings/upcoming" element={<Bookings param={1}/>}/>
       <Route path="/bookings/past" element={<Bookings param={2}/>}/>
       <Route path="/bookings/cancelled" element={<Bookings param={3}/>}/>
         
-
-
       <Route path="/wizard" element={<Wizard/>}/>
 
       <Route exact path={`/${state.link}`} element={<ConsumerEvent provider={state.provider} />}/>
