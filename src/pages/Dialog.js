@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom'
 
 export default function Dialog() {
   
-    const [state, setState] = useState('')
+    const [name, setName] = useState('')
 
     //add click out hook
 
-    function change () {
-
+    function change (value) {
+        setName(value)
     }
 
     return (
@@ -18,7 +18,7 @@ export default function Dialog() {
             <div className="dialog_form">
             <div className="_title">Add a new schedule</div>
             <div className="_subtitle">Create a new event type for people to book times with.</div>
-            <Input error={state.error} placeholder={'name'} name={'Name'} type={'text'} width={'485px'} value={state.name} change={(value)=>change('name',value)}/>
+            <Input placeholder={'name'} name={'Name'} type={'text'} width={'485px'} value={name} change={(value)=>change(value)}/>
             <br />
             <br />
             <div className="row_right">

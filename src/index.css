@@ -510,22 +510,16 @@ code {
   margin-top:20px;
 }
 
-.providerContentItem {
-  width:250px;
-  height: 250px;
-  background-color: red;
-}
-
 .dayFrame {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid #E1E1E1;
+  border-bottom:0;
+  border-left: 0;
+  border-right: 0;
+  margin-left:20px;
+  margin-right:20px;
 }
-
-.unavailable {
-  margin-left: 0.3em;
-}
-
 
 .timeFrameContainer, .dayTimeFrame, .dayContainer {
   display: flex;
@@ -536,11 +530,15 @@ code {
   justify-content: center;
   align-items: center;
   margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .dayContainer {
-  margin-top:30x;
-  margin-bottom:30x;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .frameDelete {
@@ -556,7 +554,6 @@ code {
   height: 18px;
   background: url(../src/img/addButton.svg);
   border:none;
-  margin-left: 0.5em;
 }
 
 .dropdownButtonOff {
@@ -590,6 +587,11 @@ cursor: pointer;
 .AvailableDays {
   display: flex;
   flex-direction: column;
+  width: 60%;
+  background-color:white;
+  border-radius:2px;
+  border: 1px solid #E1E1E1;
+  margin-top:30px;
 }
 
 .weekSaveButton {
@@ -630,6 +632,7 @@ cursor: pointer;
 }
 
 .columnFrame {
+  /* background-color: white; */
   width: 82px;
 }
 
@@ -638,6 +641,7 @@ cursor: pointer;
   height: 30px; 
   line-height: 30px; 
   padding-left: 10px;
+  background-color: white;
 }
 
 .nonActiveZone:hover {
@@ -693,15 +697,16 @@ cursor: pointer;
   line-height: 30px;
   color:white;
   background-color: black;
+  border: 1px solid black;
   border-radius: 2px;
   padding: 3px 20px;
-  margin-left: 10px;
  }
 
  .wizard_button_light {
   border: 1px solid #E1E1E1;
   background-color:white;
   color:black;
+  margin-left: 10px;
  }
 
 
@@ -736,6 +741,7 @@ cursor: pointer;
  ._subtitle {
   width: 600px;
   color:grey;
+  margin-top: 5px;
  }
 
  .bookings_title, .bookings_title_active, ._subtitle {
@@ -833,9 +839,7 @@ cursor: pointer;
   margin-left: 20px;
 }
 
-.right_buttons {
 
-}
 
 .right_side {
   position: absolute;
@@ -859,6 +863,8 @@ cursor: pointer;
 }
 
 ._event {
+  font-style: none;
+  text-decoration: none;
   display: flex;
   max-width: 100%;
   align-items: center;
@@ -896,7 +902,7 @@ cursor: pointer;
   filter:brightness(0%)
 }
 
-.budge_default {
+.budge_default, .budge_default_side {
   font-size: 3mm;
   width:max-content;
   background-color:#FEFCE9;
@@ -904,6 +910,16 @@ cursor: pointer;
   border-radius:2px;
   padding:6px;
   margin-left:10px;
+  margin-bottom: 10px;
+}
+
+.budge_default_side {
+  margin:0;
+  padding: 5;
+  background-color:#E1E1E1;
+  border: 1px solid grey;
+  color:black;
+  font-weight: bold;
 }
 
 ._page_dialog {
@@ -925,4 +941,12 @@ z-index: 1;
   border-radius: 2px;
   background-color: rgba(255, 255, 255);
   padding:30px;
+}
+
+.right_screen {
+  display: flex;
+  flex-direction: column;
+  width:30%;
+  margin-left: 10px;
+  margin-top:30px;
 }

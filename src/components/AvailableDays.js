@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import TimeSlot from '../components/TimeSlot'
 import * as variables from '../services/variables'
 
@@ -70,16 +70,21 @@ export default function AvailableDays() {
     }
 
     return (
+    
     <div className="AvailableDays">
+            <div className="dayContainer">
+            <div className="_title">Change the start and end times of your day</div>
+            </div>
         {week.map(day=> 
             <div key={day} className="dayFrame">
             <div className="dayContainer">
-            <input type="checkbox" onChange={()=>handleDay(day)} id={day} name={day} value={day} checked={showDay(day)}/>
-            <label htmlFor={day}>{showDayName(day)}</label>
-            {showDay(day)==true ? <button className="frameAdd" onClick={()=>addFrame(day)}></button>:
-                <div className="unavailable">is unavailable</div>}
+                <div>
+                    <input className='checkbox' type="checkbox" onChange={()=>handleDay(day)} id={day} name={day} value={day} checked={showDay(day)}/>
+                    <label htmlFor={day}>{showDayName(day)}</label>
+                </div>
             </div>
-            {timeFrames.map(frame=> {
+                <div>
+                {timeFrames.map(frame=> {
                 if (showDay(day) && frame.day===day) {
                     return <div key={frame.id} className="dayTimeFrame">
                     <TimeSlot from={frame.from} to={frame.to} setTime={(time, where)=>setTime(time, frame.id, where)}/>
@@ -88,8 +93,18 @@ export default function AvailableDays() {
                 }
             }
             )}
+                </div>
+
+                <div className="dayContainer">
+                    {showDay(day)==true ? <div className="frameAdd" onClick={()=>addFrame(day)}></div >:<div>Unavailable</div>}
+                </div>
             </div>
         )}
-    </div>
+        
+        {/* <div className="AvailableDays row_right">
+                <div className="wizard_button_light">Cancel</div>
+                <div className="wizard_button">Save</div>
+            </div> */}
+        </div>
   )
 }

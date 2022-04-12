@@ -77,6 +77,7 @@ export default function App() {
       <Route path="/signup" element={<SignUpPage/>}/>
       <Route path="/availability" element={<Availability/>}/>
       <Route path="/availability/:id" element={<Availability/>}/>
+      {/* <Route path="/availability/new" element={<Availability/>}/> */}
       <Route path="/success" element={<EventSuccess/>}/>
       <Route path="/bookings/upcoming" element={<Bookings param={1}/>}/>
       <Route path="/bookings/past" element={<Bookings param={2}/>}/>
