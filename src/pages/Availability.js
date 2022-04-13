@@ -40,7 +40,6 @@ export default function Availability(props) {
             <div className="icon_event_button"></div>    
         </NavLink>}
         
-        
         {id && id!='new' && <div className="row">
           <AvailableDays/>
           <div className="right_screen">

@@ -70,7 +70,7 @@ export default function AvailableDays() {
     }
 
     return (
-    
+    <div className="_outtest">
     <div className="AvailableDays">
             <div className="dayContainer">
             <div className="_title">Change the start and end times of your day</div>
@@ -101,10 +101,11 @@ export default function AvailableDays() {
             </div>
         )}
         
-        {/* <div className="AvailableDays row_right">
-                <div className="wizard_button_light">Cancel</div>
-                <div className="wizard_button">Save</div>
-            </div> */}
+        </div>
+        <div className="row_right">
+            <div className="wizard_button_light">Cancel</div>
+            <div className="wizard_button">Save</div>
+        </div>
         </div>
   )
 }

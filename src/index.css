@@ -357,32 +357,34 @@ code {
 }
 
 .carrotQuestMenu {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   text-align: left;
-  border-radius: 5px;
-  box-shadow: 4px 4px 2px #c7c7c7;
-  color:white;
-  font-weight: bold;
+  border-radius: 3px;
+  border: 1px solid #E1E1E1;
+  box-shadow: 2px 2px 2px #c7c7c7;
   bottom:50px;
-  right:50px;
-  height: 100px;
-  width:200px;
+  width:86%;
   background-color: white;
 }
 
 .carrotQuestMenuItem {
   display: flex;
+  text-decoration:none;
   flex-direction: row;
   align-items: center;
   width:auto;
   height: 32px;
   line-height: 30px;
-  font-size: large;
+  font-style: none;
+  font-weight: 400;
+  font-size:4mm;
   color:grey;
 }
 
 .carrotQuestMenuItem:hover {
-  
+  cursor:pointer;
   background-color: #f4f4f4;
   color:black;
 }
@@ -391,9 +393,48 @@ code {
   cursor: pointer;
 }
 
-.carritQuestIcon {
-  margin-left: 8px;
-  margin-right: 8px;
+.icon_signout, .icon_sleep, .icon_sent, .icon_text, .icon_public, .icon_roadmap, .icon_popup {
+  width:18px;
+  height: 18px;
+  background-image: url('./img/icon_logout.svg');
+  filter: invert(69%) sepia(11%) saturate(8%) hue-rotate(355deg) brightness(86%) contrast(93%);
+  margin: 0px 10px 0px 10px;
+}
+
+.icon_popup {
+  margin:0;
+  background-image: url('./img/icon_popup.svg');
+}
+
+.icon_signout {
+  background-image: url('./img/icon_logout.svg');
+}
+
+.icon_sleep {
+  background-image: url('./img/icon_sleep.svg');
+}
+
+.icon_sent {
+  background-image: url('./img/icon_sent.svg');
+}
+
+.icon_text {
+  background-image: url('./img/icon_text.svg');
+}
+
+.icon_public {
+  background-image: url('./img/icon_public.svg');
+}
+
+.icon_roadmap {
+  background-image: url('./img/icon_roadmap.svg');
+}
+
+.border_bottom {
+  border: 1px solid #E1E1E1;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
 }
 
 .event_form {
@@ -465,7 +506,7 @@ code {
   font-size:4mm;
   text-decoration: none;
   width:200px;
-  padding: 10px 8px 10px 8px;
+  padding: 10px 8px 10px 8px; 
   margin-top:20px;
   color:rgb(150, 150, 150);
 }
@@ -587,7 +628,6 @@ cursor: pointer;
 .AvailableDays {
   display: flex;
   flex-direction: column;
-  width: 60%;
   background-color:white;
   border-radius:2px;
   border: 1px solid #E1E1E1;
@@ -613,6 +653,7 @@ cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  padding-top: 10px;
 }
 
 .column {
@@ -706,7 +747,6 @@ cursor: pointer;
   border: 1px solid #E1E1E1;
   background-color:white;
   color:black;
-  margin-left: 10px;
  }
 
 
@@ -949,4 +989,73 @@ z-index: 1;
   width:30%;
   margin-left: 10px;
   margin-top:30px;
+}
+
+.login_block, .login_block_static {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60px;
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+  margin:15px;
+}
+
+.login_block:hover {
+  cursor:pointer;
+  background-color: #e8e8e8;
+}
+
+.avatar {
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  line-height: 50px;
+  text-align: center;
+  font-size: larger;
+  justify-content: center;
+  background-color: rgb(132, 89, 172);
+  margin:5px;
+  color:white;
+}
+
+.avatar_sleep_off, .avatar_sleep_on {
+  position: absolute;
+  left:45px;
+  bottom:10px;
+  width:10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #5CBA83;
+}
+
+.avatar_sleep_off {
+  background-color: orange;
+}
+
+.popup_button {
+  position: absolute;
+  right:5px;
+}
+
+.popup_title {
+  font-size:4mm;
+  color:grey;
+}
+
+.login_title {
+  margin-top: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7mm;
+  font-weight: 800;
+}
+
+.login_subtitle {
+  margin: 30px 0px 30px 0px;
+  
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 5mm;
+  font-weight: 600;
+  color:grey;
 }

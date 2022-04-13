@@ -19,6 +19,8 @@ import Bookings from './pages/Bookings';
 export default function App() {
   
   const location=(useLocation()).pathname
+  const loggedUser = localStorage.getItem('user')
+  const currentDate = useSelector(state=>state.chosenDate)
 
   const [state, setState] = useState({
     providers:[],
@@ -58,11 +60,9 @@ export default function App() {
       if (requiredUser) loadProvider(requiredUser)
   }, [state.providers])
   
-  const loggedUser = localStorage.getItem('user')
-  const currentDate = useSelector(state=>state.chosenDate)
-  
   function menu() {
-    if (location=='/wizard') return false
+    if (loggedUser==null) return false
+    if (location=='/wizard' || location=='/login') return false
     else return true
   }
 
@@ -71,9 +71,12 @@ export default function App() {
       {menu()? <LeftNavbar/> : null}
       <div className={menu()? 'providerContent' : null}>
       <Routes>
-      <Route path="/events" element={<Events/>}/>
-      <Route path="/settings" element={<Settings/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/wizard" element={<Wizard/>}/>
+        
+          {loggedUser && <Route path="/events" element={<Events/>}/>}
+          {loggedUser && <Route path="/settings" element={<Settings/>}/>}
+        
       <Route path="/signup" element={<SignUpPage/>}/>
       <Route path="/availability" element={<Availability/>}/>
       <Route path="/availability/:id" element={<Availability/>}/>
@@ -83,13 +86,12 @@ export default function App() {
       <Route path="/bookings/past" element={<Bookings param={2}/>}/>
       <Route path="/bookings/cancelled" element={<Bookings param={3}/>}/>
         
-      <Route path="/wizard" element={<Wizard/>}/>
 
       <Route exact path={`/${state.link}`} element={<ConsumerEvent provider={state.provider} />}/>
       <Route exact path={`/${state.link}/:type/`} element={<ConsumerCal provider={state.provider} />}/>
       <Route exact path={`/${state.link}/:type/${currentDate}`} element={<EventComplete provider={state.provider} />}/>
 
-      <Route path="/" exact element={<NotFound loggedUser={loggedUser}/>}/>
+      <Route path="/" exact element={<Login />}/>
       <Route path="*" exact element={<NotFound/>}/>  
       </Routes>
       </div>

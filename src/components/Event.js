@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Event() {
   
+    const navigate = useNavigate()
+
+    useEffect (()=> {
+        if (localStorage.getItem('user')==null) navigate('/login')
+    },[])
+
     return (
     <div className="_event">
         <div className="column">

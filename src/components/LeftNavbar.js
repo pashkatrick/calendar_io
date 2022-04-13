@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate, NavLink, useLocation } from 'react-router-dom'
+import PopUpMenu from './PopUpMenu'
+import LoginBlock from './LoginBlock'
 
 export default function LeftNavbar() {
   
@@ -31,8 +33,10 @@ export default function LeftNavbar() {
           <NavLink className={location==='/settings'? 'menu_button_active':'menu_button'} to='/settings'>
           <div className={`icon_settings ${location==='/settings'? 'icon_active':null}`}></div>
           Settings
-          </NavLink>                                                               
+          </NavLink>
+                                                  
       </div>}
+      <LoginBlock/>
       </div>
     </div>
   )
