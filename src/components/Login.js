@@ -25,9 +25,9 @@ export default function Login() {
         <div className="login_subtitle">Sign in to your account</div>
         <div className="login_form">
         <div className="column">
-        <Input error={state.error} placeholder={'email'} name={'Email'} type={'text'} width={'350px'} value={state.name} change={(value)=>change('email',value)}/>
+        <Input error={state.error} placeholder={'your.email@something.com'} name={'Email'} type={'text'} width={'350px'} value={state.name} change={(value)=>change('email',value)}/>
         <br />
-        <Input error={state.error} placeholder={'password'} name={'Password'} type={'text'} width={'350px'} value={state.username} change={(value)=>change('username',value)}/>
+        <Input error={state.error} placeholder={'password'} name={'Password'} type={'password'} width={'350px'} value={state.username} change={(value)=>change('username',value)}/>
         <br />
         <div className="wizard_button" onClick={()=>loginUser()}>Login</div>
         <br />

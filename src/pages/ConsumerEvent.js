@@ -15,7 +15,7 @@ export default function ConsumerEvent (props) {
         const axios = require('axios');
         var config = {
         method: 'get',
-        url: `http://127.0.0.1:5000/user/${providerId}/types`,
+        url: `http://109.107.176.29:5000/user/${providerId}/types`,
         headers: { }
     };    
         axios(config)
@@ -26,13 +26,25 @@ export default function ConsumerEvent (props) {
     
     return (
             <div className="page">
-            <p>Your fency logo</p>
-            <h3>{props.link}</h3>
+            <div className="avatar">{props.provider.name.substring(0,1)}</div>
             <h4>{props.provider.name}</h4>
+            <h5>{props.provider.bio}</h5>
+            
             {types==null? <p>has the following type of events</p>:<p>this user does not have any events</p>}
             <div className="eventContainer">
             {types.map(event=> 
-                <NavLink key={event._id} className="buttonBright" to={`${event.title}`}>{event.title}</NavLink>
+                <NavLink key={event._id} className="_event" to={`${event.title}`}>{event.title}
+                <div className="column">
+                <div className="_subtitle">{event.title}</div>
+                <div className="row">
+                <div className="icon_event"></div>    
+                <div>15 min</div>
+                <div className="icon_event"></div>    
+                <div>1-on-1</div>
+                </div>
+                </div>
+            </NavLink>
+                
                 )}
             </div>
     </div>

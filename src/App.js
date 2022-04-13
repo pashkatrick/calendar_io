@@ -26,16 +26,16 @@ export default function App() {
     providers:[],
     provider:null,
     link:null,
-    path:location.substring(1)
+    path:location.substring(1),
   })
   
 
   function loadUsers() {
     var axios = require('axios');
-  
+    // jenniferwallace
   var config = {
   method: 'get',
-  url: 'http://127.0.0.1:5000/users',
+  url: 'http://109.107.176.29:5000/users',
   headers: { }
   };
 
@@ -52,16 +52,21 @@ export default function App() {
   
   useEffect (()=> {
     // create the condition instead to avoid loading data when static links use
-    if (state.path) loadUsers()
+    if (state.path) {
+      setState({...state, dash:false})
+      loadUsers()
+    }
   },[])
 
   useEffect (()=> {
       const requiredUser = state.providers.find(user=> user.username==state.path)
-      if (requiredUser) loadProvider(requiredUser)
+      if (requiredUser) {
+        loadProvider(requiredUser)
+      }
   }, [state.providers])
   
   function menu() {
-    if (loggedUser==null) return false
+    if (loggedUser==null || state.link!=null) return false
     if (location=='/wizard' || location=='/login') return false
     else return true
   }
@@ -77,16 +82,15 @@ export default function App() {
           {loggedUser && <Route path="/events" element={<Events/>}/>}
           {loggedUser && <Route path="/settings" element={<Settings/>}/>}
         
-      <Route path="/signup" element={<SignUpPage/>}/>
-      <Route path="/availability" element={<Availability/>}/>
-      <Route path="/availability/:id" element={<Availability/>}/>
+      {loggedUser && <Route path="/signup" element={<SignUpPage/>}/>}
+      {loggedUser && <Route path="/availability" element={<Availability/>}/>}
+      {loggedUser && <Route path="/availability/:id" element={<Availability/>}/>}
       {/* <Route path="/availability/new" element={<Availability/>}/> */}
       <Route path="/success" element={<EventSuccess/>}/>
-      <Route path="/bookings/upcoming" element={<Bookings param={1}/>}/>
-      <Route path="/bookings/past" element={<Bookings param={2}/>}/>
-      <Route path="/bookings/cancelled" element={<Bookings param={3}/>}/>
+      {loggedUser && <Route path="/bookings/upcoming" element={<Bookings param={1}/>}/> }
+      {loggedUser && <Route path="/bookings/past" element={<Bookings param={2}/>}/>}
+      {loggedUser && <Route path="/bookings/cancelled" element={<Bookings param={3}/>}/>}
         
-
       <Route exact path={`/${state.link}`} element={<ConsumerEvent provider={state.provider} />}/>
       <Route exact path={`/${state.link}/:type/`} element={<ConsumerCal provider={state.provider} />}/>
       <Route exact path={`/${state.link}/:type/${currentDate}`} element={<EventComplete provider={state.provider} />}/>
