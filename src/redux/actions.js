@@ -6,7 +6,16 @@ export function eventAdded (event) {
         type: actions.EVENT_ADDED,
         payload: {
             event
-          }
+        }
+    }]
+}
+
+export function notificationAdded (notification) {
+    return [...state, {
+        type: actions.NOTIFICATION_ADDED,
+        payload: {
+            notification
+        }
     }]
 }
 

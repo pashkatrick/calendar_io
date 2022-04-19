@@ -9,7 +9,7 @@ function Calendar(props) {
   const week = variables.CALENDAR_WEEKDAYS
   const months = variables.CALENDAR_MONTHS
   const wdays = variables.CALENDAR_DAYS
-  const unavailableDays = props.unavailableDays
+  const availableDays = props.availableDays
   
   const [focus, setFocus ] = useState()
   const [month, setMonth ] = useState(getMonth())
@@ -28,9 +28,9 @@ function Calendar(props) {
   }
   
   function handleUnavailableDay (day) {
-    if (unavailableDays.filter(e=> e==day.wday).length>0) return true
-    if (month==state.monthNow) return state.dayNow>day.id
-    return false
+    if (day.id<state.dayNow && month==state.monthNow) return true
+    if (availableDays.filter(e=> e==day.wday).length>0) return false
+    return true
   }
 
   function getMonth() {
@@ -107,7 +107,12 @@ function daysInMonth (month, year) {
       store.dispatch({
         type:actions.DATE_ADDED,
         payload:{
-          date:month+'_'+year+'_'+obj.id+'_'+obj.wday,
+          date:{date:month+'_'+year+'_'+obj.id,
+          weekday:obj.wday,
+          day:obj.id,
+          month:month,
+          year:year
+        }
         }
     })
     }

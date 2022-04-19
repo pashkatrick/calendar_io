@@ -9,7 +9,7 @@ export default function LoginBlock() {
     const active = 'false'
     
     useEffect (()=> {
-        console.log(name)
+    
     })
 
     function popup () {

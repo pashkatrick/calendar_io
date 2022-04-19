@@ -574,6 +574,7 @@ code {
   margin-bottom: 0.5em;
 }
 
+
 .dayContainer {
   justify-content: space-between;
   align-items: center;
@@ -1053,9 +1054,32 @@ z-index: 1;
 
 .login_subtitle {
   margin: 30px 0px 30px 0px;
-  
   font-family: Arial, Helvetica, sans-serif;
   font-size: 5mm;
   font-weight: 600;
   color:grey;
+}
+
+.notification {
+  position: absolute;
+  bottom:5px;
+  right:5px;
+  width:250px;
+  height:50px;
+  z-index: 2;
+  opacity: 80%;
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+}
+
+.event_description {
+  width:100px;
+  background-color: #F5F5F5
+}
+
+.eventContainer {
+  display:flex;
+  flex-direction: row;
+  border: 1px solid red;
 }

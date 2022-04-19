@@ -1,39 +1,52 @@
-import React, {Fragment, useEffect} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import EventForm from '../components/EventForm'
 import TimeForConsumer from '../components/TimeForConsumer'
 import store from '../redux/store'
 import { useSelector } from 'react-redux';
 import timeBuilder from '../services/timeBuilder';
 
+
 export default function EventComplete(props) {
 
-  const date = useSelector(state=>state.chosenDate)  
-  const week = useSelector(state=>state.week)
-  
+  const [frames, setFrames] = useState([])
+  const currentDate = useSelector(state=>state.chosenDate)  
+  const providerId = props.provider._id
+ 
   useEffect (()=> {
-    console.log(date)
-    console.log(week)
-  },[])
+    const axios = require('axios');
+    var config = {
+    method: 'get',
+    url: `http://109.107.176.29:5000/user/${providerId}/free`,
+    headers: { }
+};    
+    axios(config)
+    .then(function (response) {
+      setFrames(response.data.free_slots)
+      console.log(response)
+})
 
-  // const id = date.substr(date.length-1, 1)
-  // const day = week.find(d=>d.id-1==id)
-  // const frm = fillFrames(day.timeFrames)
+},[])
+ 
+ 
+ 
+  // const week = useSelector(state=>state.week)
+  
+  // useEffect (()=> {
+  //   // console.log(date)
+  //   // console.log(week)
+  // },[])
 
-  // function fillFrames (givenFrames) {
-  // let frames = []
-  // givenFrames.forEach(element => {
-  // const time=timeBuilder(element.from, element.to)
-  // frames = [...frames, ...time]  
-  // });
-  // return frames
-  // }
+  function setEventTime (time) {
+    console.log(time)
+  }
 
   return (
     <div className="page">
-    <p>You are booking the event with {props.provider.link} on {date.substr(0,9)}</p>
+    <p>{currentDate.date}</p>
+    <p>You are booking the event with {props.provider.link} on {currentDate.date}</p>
     <div className="row">
     <EventForm/>
-    {/* <TimeForConsumer frames={frm}/> */}
+    <TimeForConsumer frames={frames} setTime={(time)=>setEventTime(time)}/>
     </div>
     </div>
   )

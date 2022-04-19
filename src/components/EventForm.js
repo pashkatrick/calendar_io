@@ -1,36 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, NavLink, Link } from 'react-router-dom'
 import store from '../redux/store'
 import { useSelector } from 'react-redux';
 import * as actions from '../redux/actionTypes'
-import TimeForConsumer from "./TimeForConsumer";
+import TimeForConsumer from '../components/TimeForConsumer'
+
 
 export default function EventForm(props) {
 
-  const currentDate = useSelector(state=>state.chosenDate)  
+  // const currentDate = useSelector(state=>state.chosenDate)  
   
   const navigate = useNavigate()
   const [event, setEvent] = useState({
-      name:"",
-      email:"",
-      description:"",
-      providerName: props.link,
-      date:currentDate,
-      from:"",
-      to:""
+      // name:"",
+      // email:"",
+      // description:"",
+      // providerName: props.link,
+      // date:currentDate,
+      // from:0,
+      // to:0
+    title: "string_test",
+    agenda: "string_test",
+    description: "string_test",
+    start_time: 0,
+    end_time: 0,
+    offline: true,
+    paid: true,
+    type_id: 0,
+    user_id: 0
   })
+  
+// useEffect (()=> {
+  
+// },[])
 
-  let error=""
-    
   function saveEvent() {    
     store.dispatch({
       type:actions.EVENT_ADDED,
       payload:{
-      event
+        event
       }
     })
+    saveEvent ()
     navigate(`/success`)
   }
+
+  function setEventTime (time) {
+    setEvent({...event, from:time})
+  }
+
+  
 
     return (
     <div className="event_form">
@@ -46,7 +65,6 @@ export default function EventForm(props) {
         <div className="row">
           <div className="buttonBright" onClick={()=>navigate(-1)}>Back</div>
           <div className="buttonBright" onClick={()=>saveEvent()}>Submit</div>
-          <p>{error}</p>
           </div>
     </div>
 );
