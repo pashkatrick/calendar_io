@@ -71,6 +71,7 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
   justify-content: center;
   background-color: #fcfcfc;
 
@@ -215,8 +216,8 @@ code {
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  row-gap: 2px;
-  column-gap: 2px;
+  row-gap: 5px;
+  column-gap: 5px;
 }
 
 .calendarContainer {
@@ -224,31 +225,46 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: white;
+  margin-top:5px;
+  margin-bottom:5px;
 }
 
 .cell {
-  width:40px;
-  height: 40px;
-  background-color: rgb(179, 179, 179);  
+  width:50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color:white;  
+  color:#c7c7c7;
+  border:1px solid white;
 }
 
 .activeCell {
-  width:40px;
-  height: 40px;
-  background-color: #f7d025;  
-  border: 1px, solid, #f7d025;
+  width:50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: #F5F5F5;  
+  border:1px solid white;
+  color:black;
 }
 
 .focusCell {
-  width:40px;
-  height: 40px;
-  background-color: rgb(23, 78, 172);  
+  width:50px;
+  height: 50px;
+  line-height: 50px;
+  background-color: black;  
   color:white;
-  border: 1px, solid, #f7d025;
 }
 
-.activeCell {
+.cell:hover {
+  cursor: default;
+}
+
+.activeCell:hover {
   cursor: pointer;
+  border:1px solid black;
 }
 
 .event {
@@ -291,7 +307,7 @@ code {
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 50%;
-  background-color: #f7d025;
+  background-color: #e8e8e8;
 }
 
 .monthF, .monthB {
@@ -317,11 +333,11 @@ code {
 
 .weekday {
   text-align: center;
-  line-height: 40px;
+  line-height: 50px;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight:bolder;
-  background-color: rgb(23, 78, 172);
-  color: white;
+  /* font-weight:bolder; */
+  background-color: white;
+  color:#c7c7c7;
 }
 
 .tooltip {
@@ -1046,14 +1062,13 @@ z-index: 1;
 }
 
 .login_title {
-  margin-top: 100px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 7mm;
   font-weight: 800;
 }
 
 .login_subtitle {
-  margin: 30px 0px 30px 0px;
+  margin: 20px 0px 20px 0px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 5mm;
   font-weight: 600;
@@ -1074,12 +1089,33 @@ z-index: 1;
 }
 
 .event_description {
-  width:100px;
-  background-color: #F5F5F5
+  width:200px;
+  border: 1px solid #E1E1E1;
+  border-left:0;
+  border-bottom:0;
+  border-top:0;
+  margin: 10px;
+}
+
+.time_consumer_container {
+  width:200px;
+  border: 1px solid #E1E1E1;
+  border-right:0;
+  border-bottom:0;
+  border-top:0;
+  margin:10px;
+  padding-left:5px;
+}
+
+.currentDate {
+  color:grey;
+  margin-left:5px;
+  margin-bottom:5px;
 }
 
 .eventContainer {
   display:flex;
   flex-direction: row;
-  border: 1px solid red;
+  border: 1px solid #E1E1E1;
+  background-color: white;
 }

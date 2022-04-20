@@ -32,16 +32,13 @@ function setTimeFrame (time) {
 }
 
 return (
-    
     <div className="column">
-    {/* <div className="timeFrameConsumer timeRed">{timeDecoder(props.from)}</div> */}
-    <div className="timeFormConsumer">
+    <div className="timeForConsumer">
         {finiteTime.map(time => 
           <div key={time} className={`${props.from==time ? 'timeFrameConsumerCurrent':'timeFrameConsumer'}`} onClick={()=>setTimeFrame(time)}>{timeDecoder(time)}</div>
           )}
     </div>
     </div>
-    
   )
 }
 
