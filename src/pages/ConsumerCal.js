@@ -16,6 +16,7 @@ export default function ProviderCal(props) {
   const navigate = useNavigate();
   const availableDays = timeFrameParser(frames)
   const week = variables.CALENDAR_WEEKDAYS_FULL
+  const month = variables.CALENDAR_MONTHS
 
   useEffect (()=> {
       const axios = require('axios');
@@ -53,28 +54,25 @@ export default function ProviderCal(props) {
 
   return (
     <div className="page">
-      <div className="avatar">{props.provider.name.substring(0,1)}</div>
-      <p>You are going to book something with {props.provider.name}</p>
-      {/* {error? <p>{error}</p> : <p>pick up the date</p>} */}
         <div className="eventContainer">
           <div className="event_description">
             <div>{props.provider.name}</div>
-            <div>one</div>
-            <div>one</div>
+            <div>{length.type} min</div>
+            <div>time zone</div>
           </div>
           <Calendar availableDays={availableDays} provider={props.provider}/>
-          <div></div>
           {currentDate && 
+          <div className="time_consumer_container">
           <div className="column">
-          <div>{week[currentDate.weekday]}</div>
+          <div className="currentDate">{week[currentDate.weekday]} {currentDate.day} {month[currentDate.month]}</div>
           <TimeForConsumer setTime={(time)=>setTime(time)} frames={filteredFrames} length={length.type}/>
+          </div>
           </div>
           }
           </div>
           <br />
           <div className="row">
           <NavLink className="wizard_button_light" to={`/${props.provider.username}`}>Back</NavLink>
-          {/* <div className="wizard_button" onClick={()=>handleDay()}>Next</div> */}
           </div>
     </div>
 );
