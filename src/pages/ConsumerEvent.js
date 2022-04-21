@@ -25,18 +25,17 @@ export default function ConsumerEvent (props) {
             <div className="avatar">{props.provider.name.substring(0,1)}</div>
             <h4>{props.provider.name}</h4>
             <h5>{props.provider.bio}</h5>
-            
-            {types==null? <p>has the following type of events</p>:<p>this user does not have any events</p>}
-            <div className="eventContainer">
+            {types==null? <p>this user does not have any events</p>:<p>has the following type of events</p>}
+            <div className="column">
             {types && types.map(event=>
-                <NavLink key={event._id} className="_event" to={`${event.length}`}>
+                <NavLink key={event._id} className="_event_provider" to={`${event.length}`}>
                 <div className="column">
                 <div className="_subtitle">{event.title}</div>
                 <div className="row">
-                <div className="icon_event"></div>    
-                <div>{event.length}</div>
-                <div className="icon_event"></div>    
-                <div>1-on-1</div>
+                <div className="icon_clock"></div>    
+                <div className="_subtitle">{event.length}</div>
+                <div className="icon_person"></div>    
+                <div className="_subtitle">1-on-1</div>
                 </div>
                 </div>
             </NavLink>

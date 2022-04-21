@@ -4,14 +4,16 @@ import TimeForConsumer from '../components/TimeForConsumer'
 import store from '../redux/store'
 import { useSelector } from 'react-redux';
 import timeBuilder from '../services/timeBuilder';
+import { useNavigate } from 'react-router';
 
 
 export default function EventComplete(props) {
 
   const [frames, setFrames] = useState([])
-  const currentDate = useSelector(state=>state.chosenDate)  
+  const currentDate = useSelector(state=>state.chosenDate.date)  
   const providerId = props.provider._id
- 
+  const navigate = useNavigate()
+
   useEffect (()=> {
     const axios = require('axios');
     var config = {
@@ -22,7 +24,6 @@ export default function EventComplete(props) {
     axios(config)
     .then(function (response) {
       setFrames(response.data.free_slots)
-      console.log(response)
 })
 
 },[])
@@ -37,7 +38,8 @@ export default function EventComplete(props) {
   // },[])
 
   function setEventTime (time) {
-    console.log(time)
+    // navigate(`/${currentDate}`)
+    // console.log(`here is your ${time}`)
   }
 
   return (

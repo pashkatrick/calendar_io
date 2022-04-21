@@ -54,7 +54,7 @@ export default function App() {
 
   function menu() {
     if (loggedUser==null || state.link!=null) return false
-    if (location=='/wizard' || location=='/login') return false
+    if (location=='/wizard' || location=='/login' || location=='/') return false
     else return true
   }
 

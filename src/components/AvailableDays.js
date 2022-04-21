@@ -1,7 +1,9 @@
 import React from 'react'
-import { useState, Fragment } from 'react'
+import {NavLink } from 'react-router-dom';
+import { useState } from 'react'
 import TimeSlot from '../components/TimeSlot'
 import * as variables from '../services/variables'
+
 
 export default function AvailableDays() {
       
@@ -103,8 +105,8 @@ export default function AvailableDays() {
         
         </div>
         <div className="row_right">
-            <div className="wizard_button_light">Cancel</div>
-            <div className="wizard_button">Save</div>
+            <NavLink className="wizard_button_light" to={`/availability`}>Cancel</NavLink>
+            <div className="wizard_button" to="/availability">Save</div>
         </div>
         </div>
   )

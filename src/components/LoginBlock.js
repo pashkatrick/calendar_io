@@ -32,7 +32,7 @@ export default function LoginBlock() {
           <div className="popup_title">{shortName(name,0)}</div>
           <div className="popup_title">{`calendar.io/${shortName(name,13)}`}</div>
           </div>
-          <div className="icon_popup popup_button"></div>
+          <div className="icon_unfold popup_button"></div>
       </div>
       {toggle && <PopUpMenu click={() => popup()}/>}
       </Fragment>

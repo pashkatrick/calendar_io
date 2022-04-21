@@ -29,9 +29,9 @@ export default function Login() {
         <br />
         <Input error={state.error} placeholder={'password'} name={'Password'} type={'password'} width={'350px'} value={state.username} change={(value)=>change('username',value)}/>
         <br />
-        <div className="wizard_button" onClick={()=>loginUser()}>Login</div>
+        <button className="wizard_button" onClick={()=>loginUser()}>Login</button>
         <br />
-        <div className="wizard_button_light">Login with Google</div>
+        <button className="wizard_button_light">Login with Google</button>
         </div>
         </div>
     </div>

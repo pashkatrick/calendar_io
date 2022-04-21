@@ -56,8 +56,12 @@ export default function ProviderCal(props) {
     <div className="page">
         <div className="eventContainer">
           <div className="event_description">
-            <div>{props.provider.name}</div>
-            <div>{length.type} min</div>
+            <div className="_title">{props.provider.name}</div>
+            <br/>
+            <div className="row">
+            <div className="icon_clock"></div>
+            <div className="_subtitle">{length.type} min</div>
+            </div>
             <div>time zone</div>
           </div>
           <Calendar availableDays={availableDays} provider={props.provider}/>

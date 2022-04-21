@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import store from '../redux/store'
-import { useSelector } from 'react-redux';
-import timeBuilder from '../services/timeBuilder';
 import { timeDecoder } from '../services/timeBuilder';
+
 
 export default function TimeForConsumer(props) {
   

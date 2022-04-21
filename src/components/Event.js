@@ -14,16 +14,16 @@ export default function Event() {
         <div className="column">
         <div className="_subtitle">Meeting for 15 min/</div>
         <div className="row">
-            <div className="icon_event"></div>    
+            <div className="icon_clock"></div>    
             <div>15 min</div>
-            <div className="icon_event"></div>    
+            <div className="icon_person"></div>    
             <div>1-on-1</div>
         </div>
         </div>
         <div className="row">
-            <div className="icon_event_button"></div>    
-            <div className="icon_event_button"></div>    
-            <div className="icon_event_button"></div>    
+            <div className="icon_event_button icon_public"></div>    
+            <div className="icon_event_button icon_copy"></div>    
+            <div className="icon_event_button icon_more"></div>    
         </div>
     </div>
   )

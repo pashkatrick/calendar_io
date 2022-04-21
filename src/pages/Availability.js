@@ -37,7 +37,7 @@ export default function Availability(props) {
         </div>
         <div>long description</div>
         </div>    
-            <div className="icon_event_button"></div>    
+            <div className="icon_event_button icon_more"></div>    
         </NavLink>}
         
         {id && id!='new' && <div className="row">
