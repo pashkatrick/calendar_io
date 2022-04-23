@@ -1,6 +1,6 @@
 import * as actions from "./actionTypes"
 
-export function eventAdded (event) {
+export function eventAdded (state=[],event) {
     return [...state, {
         type: actions.EVENT_ADDED,
         payload: {

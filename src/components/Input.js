@@ -13,7 +13,7 @@ export default function Input(props) {
 
     return (
     <div className="column">
-    <label htmlFor={props.name}>{props.name}</label>
+    <label className='input_label' htmlFor={props.name}>{props.name}</label>
     {props.error && <div className='input_error' style={{width:props.width}}></div>}
     <input className='input' 
     style={{width:props.width}}
