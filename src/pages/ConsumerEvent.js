@@ -39,7 +39,6 @@ export default function ConsumerEvent (props) {
                 </div>
                 </div>
             </NavLink>
-                
                 )}
             </div>
     </div>

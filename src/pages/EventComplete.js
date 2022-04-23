@@ -1,71 +1,39 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import EventForm from '../components/EventForm'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import * as variables from '../services/variables'
+import { timeDecoder } from '../services/timeBuilder';
 
 export default function EventComplete(props) {
 
-  const [event, setEvent] = useState({
-    title: "string_test",
-    agenda: "string_test",
-    description: "string_test",
-    start_time: 0,
-    end_time: 0,
-    offline: true,
-    paid: true,
-    type_id: 0,
-    user_id: 0
-  })
-  
-  const currentDate = useSelector(state=>state.chosenDate.date)  
-  const providerId = props.provider._id
-  const navigate = useNavigate()
+  const date = useSelector(state=>state.chosenDate)  
+  const time = useSelector(state=>state.time)  
+  const months = variables.CALENDAR_MONTHS_FULL
 
-  useEffect (()=> {
-  console.log(providerId)
-  },[])
- 
-  // function saveEvent(event) {    
-  // //   store.dispatch({
-  // //     type:actions.EVENT_ADDED,
-  // //     payload:{
-  // //       event
-  // //     }
-  // //   })
-  // //   saveEvent ()
-  // //   navigate(`/success`)
-  // }
-
-  function saveEvent () {
-
+  function displayDate () {
+    const result = timeDecoder(time.time_from) + ", " + date.day + ", " + months[date.month] + ", " + date.year
+    return result
   }
 
   return (
     <div className="page">
-    <div className="eventContainer">
-          <div className="event_description">
+    <div className="eventContainer _border">
+          <div className="event_description _extraheight">
             <div className="_title">{props.provider.name}</div>
             <br/>
             <div className="row">
             <div className="icon_clock"></div>
-            <div className="_subtitle">min</div>
+            <div className="_subtitle">event type</div>
             </div>
-            <div>time zone</div>
+            <div className="row green_title">
+            <div className="icon_bookings"></div>  
+            <div className="complete_event_title">{displayDate()}</div>
+            </div>
           </div>
-          <EventForm/>
-          <div className="column">
-          
+            <EventForm providerId={props.provider._id}/>
+            <div className="column">
           </div>
-          
-          
-      </div>
-    
-    
-
-    <div className="row">
-          <div className="wizard_button" onClick={()=>navigate(-1)}>Back</div>
-          <div className="wizard_button_light" onClick={()=>saveEvent()}>Submit</div>
-          </div>
+      </div>    
     </div>
     
   
