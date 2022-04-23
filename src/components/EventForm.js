@@ -12,13 +12,6 @@ export default function EventForm(props) {
   
   const navigate = useNavigate()
   const [event, setEvent] = useState({
-      // name:"",
-      // email:"",
-      // description:"",
-      // providerName: props.link,
-      // date:currentDate,
-      // from:0,
-      // to:0
     title: "string_test",
     agenda: "string_test",
     description: "string_test",
@@ -30,9 +23,9 @@ export default function EventForm(props) {
     user_id: 0
   })
   
-// useEffect (()=> {
+  // useEffect (()=> {
   
-// },[])
+  // },[])
 
   function saveEvent() {    
     store.dispatch({
@@ -63,8 +56,8 @@ export default function EventForm(props) {
         <textarea placeholder="say something" rows="4" type="textarea" value={event.description} onChange={e=>setEvent({...event, description:e.target.value})} /> 
         <br />
         <div className="row">
-          <div className="buttonBright" onClick={()=>navigate(-1)}>Back</div>
-          <div className="buttonBright" onClick={()=>saveEvent()}>Submit</div>
+          <div className="wizard_button" onClick={()=>navigate(-1)}>Back</div>
+          <div className="wizard_button_light" onClick={()=>saveEvent()}>Submit</div>
           </div>
     </div>
 );

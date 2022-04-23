@@ -5,8 +5,9 @@ let lastId=0;
 export function reducer (state=[], action) {
     
     switch (action.type) {
-        case actions.EVENT_ADDED: return {event: action.payload.event}; break;
-        case actions.DATE_ADDED: return {chosenDate: action.payload.date, week: action.payload.week}; break;
+        case actions.EVENT_ADDED: return {...state, event: action.payload.event}; break;
+        case actions.TIME_ADDED: return {...state, time: action.payload.time}; break;
+        case actions.DATE_ADDED: return {...state, chosenDate: action.payload.date, week: action.payload.week}; break;
         default : return state;
     }
 }

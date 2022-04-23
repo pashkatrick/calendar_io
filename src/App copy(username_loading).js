@@ -26,43 +26,31 @@ export default function App() {
   const notify = useSelector(state=>state.notifify)
   
   const [state, setState] = useState({
-    providers:[],
-    provider:null,
     link:null,
+    provider:null,
     path:location.substring(1)
   })
-  
 
-  function loadUsers() {
-  var axios = require('axios');
+  function checkPorvider() {
+    var axios = require('axios');
+    var config = {
+    method: 'get',
+    url: `http://109.107.176.29:5000/${state.path}?full=true`,
+    headers: { }
+    };
   
-  var config = {
-  method: 'get',
-  url: 'http://109.107.176.29:5000/users?limit=50&offset=0',
-  headers: { }
-  };
-
-  const dat = axios(config)
     axios(config)
     .then(function (response) {
-      console.log(response)
-      setState({...state, providers:response.data.users})
+      setState({...state, provider:response.data.user, link:response.data.user.username})
     })
   }
   
-  function loadProvider (provider) {
-    setState({...state, provider, providers:[], link:provider.username})
-  }
-  
   useEffect (()=> {
-    // create the condition instead to avoid loading data when static links use
-    if (state.path) loadUsers()
+    if (state.path) {
+      checkPorvider()
+    }
+    // console.log(currentDate.date)
   },[])
-
-  useEffect (()=> {
-      const requiredUser = state.providers.find(user=> user.username==state.path)
-      if (requiredUser) loadProvider(requiredUser)
-  }, [state.providers])
 
   function menu() {
     if (loggedUser==null || state.link!=null) return false

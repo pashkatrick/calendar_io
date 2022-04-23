@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Event from '../components/Event'
 
 export default function Events() {
   
+  const userId = 2
+  const axios = require('axios');
+  const [event_types, setEvents] = useState([])
+
+  function loadEvents () {
+            
+    var config = {
+        method: 'get',
+        url: `http://109.107.176.29:5000/user/${userId}/types`,
+        headers: { }
+    };
+        
+    axios(config)
+    .then(function (response) {
+      setEvents(response.data.event_types);
+    })
+  }
+  
+  useEffect (()=> {
+    loadEvents()
+  },[])
+
+
     return (
     <div className="_page">
       <div className="row">
@@ -18,10 +41,12 @@ export default function Events() {
             <div>You can upgrade here</div>
           </div>  
         </div>
-        
       </div>
       
-      <Event/>
+      {event_types.map(event=> 
+        <Event key={event._id} length={event.length} title={event.title}/>
+      )}
+      
 
     </div>
   )

@@ -1,21 +1,23 @@
-import React from 'react'
-import {NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import {NavLink, useParams } from 'react-router-dom';
 import { useState } from 'react'
 import TimeSlot from '../components/TimeSlot'
 import * as variables from '../services/variables'
 
-
-export default function AvailableDays() {
+export default function AvailableDays(props) {
       
     const week = variables.CALENDAR_DAYS
     const weekDays = variables.CALENDAR_WEEKDAYS_FULL
+    const id = props.id
+    
+    const [timeFrames, setTimeFrames] = useState(props.slots)
+    
+    useEffect (()=> {
+        
+    },[])
 
-    const [timeFrames, setTimeFrames] = useState([    
-        {id:1, day:0, from:540, to:600},
-        {id:2, day:1, from:540, to:1020},
-        {id:3, day:2, from:540, to:1020},
-        {id:4, day:0, from:630, to:1020},
-    ])
+    // const [timeFrames, setTimeFrames] = useState(props.slots)
+    
 
     function handleDay(day) {
         const currentFrame = timeFrames.find(frame=> frame.day===day)
@@ -38,8 +40,8 @@ export default function AvailableDays() {
 
     function setTime (time, frameId, where) {
         const currentFrame = timeFrames.find(frame=> frame.id===frameId)
-        if (where=='to') currentFrame.to=time
-        else currentFrame.from=time
+        if (where=='to') currentFrame.time_to=time
+        else currentFrame.time_from=time
         setTimeFrames([...timeFrames].map(obj=> {
             if (obj.id === frameId) {
                 return {
@@ -60,8 +62,8 @@ export default function AvailableDays() {
         const newFrame = {
             id:newId,
             day:day,
-            from:540,
-            to:1020,
+            time_from:540,
+            time_to:1020,
         }
         setTimeFrames([...timeFrames, newFrame])
     }
@@ -75,7 +77,7 @@ export default function AvailableDays() {
     <div className="_outtest">
     <div className="AvailableDays">
             <div className="dayContainer">
-            <div className="_title">Change the start and end times of your day</div>
+            <div className="_title">Change the start and end times of your day {id}</div>
             </div>
         {week.map(day=> 
             <div key={day} className="dayFrame">
@@ -89,7 +91,7 @@ export default function AvailableDays() {
                 {timeFrames.map(frame=> {
                 if (showDay(day) && frame.day===day) {
                     return <div key={frame.id} className="dayTimeFrame">
-                    <TimeSlot from={frame.from} to={frame.to} setTime={(time, where)=>setTime(time, frame.id, where)}/>
+                    <TimeSlot from={frame.time_from} to={frame.time_to} setTime={(time, where)=>setTime(time, frame.id, where)}/>
                     <div className="frameDelete" onClick={()=>{deleteFrame(frame.id)}} key={frame.id}></div>
                     </div>
                 }

@@ -14,7 +14,6 @@ export default function LeftNavbar() {
   })
 
   return (
-    <div className="providerMainPage">
     <div className="provNav">
       <div className="providerNavLogo">Calendar.io</div>
       {loggedUser && <div className="column">
@@ -33,11 +32,9 @@ export default function LeftNavbar() {
           <NavLink className={location==='/settings'? 'menu_button_active':'menu_button'} to='/settings'>
           <div className={`icon_settings ${location==='/settings'? 'icon_active':null}`}></div>
           Settings
-          </NavLink>
-                                                  
+          </NavLink>                                   
       </div>}
-      <LoginBlock/>
+        <LoginBlock/>
       </div>
-    </div>
   )
 }

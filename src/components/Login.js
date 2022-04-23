@@ -6,13 +6,30 @@ export default function Login() {
 
     const [state, setState] = useState({
         email:'',
-        password:''
+        username:'',
+        password:'',
+        id:null
     })
     
+    const axios = require('axios');
     const navigate = useNavigate()
     
     function loginUser () {
+            
+    //     var config = {
+    //         method: 'get',
+    //         url: `http://109.107.176.29:5000/${state.email}?full=true`,
+    //         headers: { }
+    //     };
+            
+    //     axios(config)
+    //     .then(function (response) {
+    //         console.log(response)
+    //         setState({...state, username: response.data.user.username, id:response.data.user._id});
+    //     })
+
         localStorage.setItem('user',state.email)
+        // localStorage.setItem('id',state._id)
         navigate("/events")
     }
 

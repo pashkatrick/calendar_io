@@ -1,5 +1,4 @@
 import * as actions from "./actionTypes"
-import { EVENT_ADDED } from "./actionTypes"
 
 export function eventAdded (event) {
     return [...state, {
@@ -24,6 +23,15 @@ export function dateAdded (state=[],date) {
         type: actions.DATE_ADDED,
         payload: {
             date
+          }
+    }]
+}
+
+export function timeAdded (state=[], time) {
+    return [...state, {
+        type: actions.TIME_ADDED,
+        payload: {
+            time
           }
     }]
 }

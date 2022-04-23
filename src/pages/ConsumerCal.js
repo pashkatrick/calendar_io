@@ -5,6 +5,8 @@ import { useNavigate, NavLink, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import * as variables from '../services/variables'
 import TimeForConsumer from '../components/TimeForConsumer';
+import store from '../redux/store'
+import * as actions from '../redux/actionTypes'
 
 export default function ProviderCal(props) {
     
@@ -48,7 +50,17 @@ export default function ProviderCal(props) {
 
   function setTime (time) {
     //redux setTime
-    console.log(`${time} to ${time+parseInt(length.type)}`)        
+    store.dispatch({
+      type:actions.TIME_ADDED,
+      payload:{ 
+        time:{
+          time_from:time,
+          time_to:time+parseInt(length.type),
+          length:length.type
+        } 
+      }
+      })
+    navigate(`${currentDate.date}`)        
   }
 
 

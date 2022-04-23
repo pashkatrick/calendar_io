@@ -492,9 +492,14 @@ code {
   flex-direction: column;
   align-items: center;
   position: fixed;
-  background-color:white;
   width: 250px;
   height: 100vh;
+}
+
+@media only screen and (max-width: 1020px) {
+  .provNav {
+    background-color: green;
+  }
 }
 
 .providerTopNavbar {

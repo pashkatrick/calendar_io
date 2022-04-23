@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import Input from '../components/Input'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 
-export default function Dialog() {
+export default function Dialog(props) {
   
     const [name, setName] = useState('')
+    const navigate = useNavigate()
 
-    //add click out hook
-
+    function create () {
+        if (name!=='') props.createNew(name)
+        navigate('/availability')
+    }
+    
     function change (value) {
         setName(value)
     }
@@ -23,7 +27,7 @@ export default function Dialog() {
             <br />
             <div className="row_right">
                 <NavLink className="wizard_button" to='/availability'>Cancel</NavLink>
-                <div className="wizard_button_light">Continue</div>
+                <div onClick={()=>create()} className="wizard_button_light">Continue</div>
             </div>
             </div>
         </div>
