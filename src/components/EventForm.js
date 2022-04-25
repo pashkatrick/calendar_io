@@ -40,21 +40,35 @@ export default function EventForm(props) {
 
   function postEvent () {
     var axios = require('axios');
+    
+    var dataA = JSON.stringify({
+      "title": "test+test",
+      "agenda": "string",
+      "description": "string",
+      "start_time": 0,
+      "end_time": 0,
+      "offline": true,
+      "paid": true,
+      "type_id": 0
+    });
+    
+    // { 
+    //   title: state.name,
+    //   agenda: state.email,
+    //   description: state.description,
+    //   start_time: time.time_from,
+    //   end_time: time.time_to,
+    //   offline: true,
+    //   paid: true,
+    //   type_id: 0,
+    //   user_id: props.providerId
+    // }
+
     var config = {
     method: 'post',
     url: `http://109.107.176.29:5000/meeting/${props.providerId}/add`,
     headers: { },
-    data: { 
-      title: state.name,
-      agenda: state.email,
-      description: state.description,
-      start_time: time.time_from,
-      end_time: time.time_to,
-      offline: true,
-      paid: true,
-      type_id: 0,
-      user_id: props.providerId
-    }
+    data: dataA
     };
     axios(config)
   }

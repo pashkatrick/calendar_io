@@ -71,7 +71,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className='appContainer'>
       {menu()? <LeftNavbar/> : null}
       <div className={menu()? 'providerContent' : null}>
       <Routes>

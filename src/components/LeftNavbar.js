@@ -15,6 +15,7 @@ export default function LeftNavbar() {
 
   return (
     <div className="provNav">
+      {/* <div className="providerNavLogo providerNavLogo_thin">Cal.io</div> */}
       <div className="providerNavLogo">Calendar.io</div>
       {loggedUser && <div className="column">
         <NavLink className={location==='/events'? 'menu_button_active':'menu_button'} to='/events'>

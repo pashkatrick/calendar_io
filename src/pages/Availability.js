@@ -9,7 +9,7 @@ import TimeZones from '../components/TimeZones'
 export default function Availability() {
   
   //user id supposed to load from the server
-  const userId = 2
+  const userId = 3
   let {id} = useParams()
 
   const [schedules, setSchedules] = useState([])

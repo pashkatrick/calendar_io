@@ -15,23 +15,31 @@ export default function Login() {
     const navigate = useNavigate()
     
     function loginUser () {
-            
-    //     var config = {
-    //         method: 'get',
-    //         url: `http://109.107.176.29:5000/${state.email}?full=true`,
-    //         headers: { }
-    //     };
-            
-    //     axios(config)
-    //     .then(function (response) {
-    //         console.log(response)
-    //         setState({...state, username: response.data.user.username, id:response.data.user._id});
-    //     })
+        // var data = JSON.stringify({
+        //   "login": "nathanmorris",
+        //   "password": ""
+        // });
+        
+        // var config = {
+        //   method: 'POST',
+        //   url: 'http://109.107.176.29:5000/auth/signin',
+        //   headers: { 
+        //     'Content-Type': 'application/json'
+        //   },
+        //   data : data
+        // };
 
         localStorage.setItem('user',state.email)
         // localStorage.setItem('id',state._id)
         navigate("/events")
+        
+        // axios(config)
+        // .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        // })
     }
+
+      
 
     function change (field, value) {
         setState({...state, [field]:value})

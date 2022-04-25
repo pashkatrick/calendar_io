@@ -370,15 +370,15 @@ code {
 }
 
 .carrotQuestMenu {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   position: absolute;
   text-align: left;
   border-radius: 3px;
   border: 1px solid #E1E1E1;
   box-shadow: 2px 2px 2px #c7c7c7;
   bottom:50px;
-  width:86%;
+  width:220px;
   background-color: white;
 }
 
@@ -494,17 +494,41 @@ code {
   height: 100vh;
 }
 
-@media only screen and (max-width: 1020px) {
+.appContainer {
+  display:flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width:0px) and (max-width: 1020px) {
+  .providerNavLogo {
+    display:none;
+  }
+
+  .carrotQuestMenu {
+    left:20px;
+  }
+
+  .providerNavLogo_thin {
+
+  }
   .provNav {
-    width: 50px;
+    display:flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: center;
+    width: 70px;
     background-color: green;
   }
-  .menu_button {
-    visibility: none;
+  
+  .menu_button_active {
+    width:18px;
   }
-  .login_block {
+  .menu_button {
+    width:18px;
+  }
+
+  .login_block, .popup_title, .icon_unfold, .popup_title, .avatar_sleep_on, .avatar_sleep_off {
     display: none;
-    visibility: none;
   }
 }
 
@@ -589,7 +613,7 @@ code {
   filter: brightness(0%);
 }
 
-.providerNavLogo {
+.providerNavLogo, .providerNavLogo_thin {
   font-size: larger;
   font-weight: bold;
   width:200px;
@@ -597,6 +621,7 @@ code {
   font-family:Arial, Helvetica, sans-serif;
   margin-top:20px;
 }
+
 
 .dayFrame {
   display: grid;
@@ -1071,6 +1096,7 @@ z-index: 1;
 }
 
 .avatar {
+  visibility: inherit;
   width:50px;
   height:50px;
   border-radius: 50%;
@@ -1084,6 +1110,7 @@ z-index: 1;
 }
 
 .avatar_sleep_off, .avatar_sleep_on {
+  visibility: inherit;
   position: absolute;
   left:45px;
   bottom:10px;
