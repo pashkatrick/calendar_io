@@ -1,11 +1,13 @@
 import '../navigation.css'
 import { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 export default function ConsumerEvent (props) {
 
     const [types, setTypes] = useState([])
     const providerId = props.provider._id
+    const navigate = useNavigate()
 
     useEffect (()=> {
         const axios = require('axios');
@@ -19,6 +21,18 @@ export default function ConsumerEvent (props) {
         setTypes(response.data.event_types)
     })
     },[])
+
+    // function clickEvent (event) {
+    //     store.dispatch({
+    //         type:actions.EVENT_ADDED,
+    //         payload:{
+    //           event:{
+    //             title: state.name,
+    //           }
+    //         }
+    //       })
+    //     navigate(`${event.length}`) 
+    // }
     
     return (
             <div className="page">
@@ -28,6 +42,7 @@ export default function ConsumerEvent (props) {
             {types==null? <p>this user does not have any events</p>:<p>has the following type of events</p>}
             <div className="column">
             {types && types.map(event=>
+                // <div onClick={()=>clickEvent(event)} className="_event_provider">
                 <NavLink key={event._id} className="_event_provider" to={`${event.length}`}>
                 <div className="column">
                 <div className="_subtitle">{event.title}</div>
@@ -38,7 +53,8 @@ export default function ConsumerEvent (props) {
                 <div className="_subtitle">1-on-1</div>
                 </div>
                 </div>
-            </NavLink>
+                {/* </div> */}
+                </NavLink>
                 )}
             </div>
     </div>

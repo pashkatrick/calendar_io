@@ -1,16 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom'
+import BookingsOutlet from '../components/BookingsOutlet'
+import Meeting from '../components/Meeting'
 
 export default function Bookings(props) {
   
+  const userId = 1
+  const [meetings, setMeetings] = useState([])
   const titles = [
     'Upcoming',
     'Cancelled',
     'Past'
   ]
-  
   const screen = props.param
   const title = titles[props.param-1]
+
+  function loadMeetings() {
+    var axios = require('axios');
+    var config = {
+    method: 'get',
+    url: `http://109.107.176.29:5000/meeting/${userId}/all`,
+    headers: { }
+    };
+      axios(config)
+      .then(function (response) {
+        setMeetings(response.data.meetings)
+      })
+    }
+
+    useEffect (()=> {
+      loadMeetings()
+    },[])
+
+    // function meetingsFilter () {
+
+    // }
 
   return (
     <div className='_page'>
@@ -22,14 +46,15 @@ export default function Bookings(props) {
       <div className="booking_line"></div>
       <br />
       <br />
-      <div className="booking_screen">
-        <div className="column_center">
-        <div className="icon_bookings_white"></div>
-        <br />
-        <div className="_title">{`No ${title} bookings, yet`}</div>
-        <div className="_subtitle">{`You have no ${title} bookings. As soon as someone books a time with you it will show up here.`}</div>
+        {screen===1 && meetings.map(meeting=> 
+          <Meeting meeting={meeting}/>
+          )}
+        {screen!=1 && 
+        <div className="booking_screen">
+          <BookingsOutlet title={title}/>
         </div>
-      </div>
+        }
+      
     </div>
   )
 }

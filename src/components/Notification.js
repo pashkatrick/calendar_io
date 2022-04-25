@@ -1,6 +1,11 @@
 import React from 'react'
 
 export default function Notification() {
+  
+  function wipedOut () {
+    
+  }
+  
   return (
     <div className="notification">
       <div className="">Hello</div>

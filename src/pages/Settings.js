@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Input from '../components/Input'
+import Notification from '../components/Notification'
+
 
 export default function Settings() {
   
@@ -13,6 +15,8 @@ export default function Settings() {
     setName({...state, [field]:value})
   }
 
+
+
   return (
     <div className='_page'>
     <div className="_title">Page</div>
@@ -22,7 +26,8 @@ export default function Settings() {
     <br />
     <Input placeholder={'email'} name={'Email'} type={'email'} width={'485px'} value={state.email} change={(value)=>change('email',value)}/>
     <br />
-    <textarea placeholder={'about'} name='about' id="" cols="59" rows="10"></textarea>
+    <textarea  className="textarea" placeholder={'about'} name='about' id="" cols="59" rows="10"></textarea>
+    <Notification/>
     </div>
   )
 }

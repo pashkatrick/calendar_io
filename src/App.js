@@ -15,7 +15,6 @@ import LeftNavbar from './components/LeftNavbar'
 import Login from './components/Login';
 import Bookings from './pages/Bookings';
 import Notification from './components/Notification';
-import AvailableDays from './components/AvailableDays';
 
 
 export default function App() {
@@ -24,14 +23,16 @@ export default function App() {
   const loggedUser = localStorage.getItem('user')
   const currentDate = useSelector(state=>state.chosenDate)
   const notify = useSelector(state=>state.notifify)
-  
+
   const [state, setState] = useState({
+    notify:true,
     providers:[],
     provider:null,
     link:null,
     path:location.substring(1)
   })
   
+
 
   function loadUsers() {
   var axios = require('axios');
@@ -45,7 +46,6 @@ export default function App() {
   const dat = axios(config)
     axios(config)
     .then(function (response) {
-      console.log(response)
       setState({...state, providers:response.data.users})
     })
   }
@@ -66,7 +66,7 @@ export default function App() {
 
   function menu() {
     if (loggedUser==null || state.link!=null) return false
-    if (location=='/wizard' || location=='/login' || location=='/') return false
+    if (location=='/wizard' || location=='/login' || location=='/' || location=='/success') return false
     else return true
   }
 
@@ -84,7 +84,7 @@ export default function App() {
       {loggedUser && <Route path="/signup" element={<SignUpPage/>}/>}
       {loggedUser && <Route path="/availability" element={<Availability/>}/>}
       {loggedUser && <Route path="/availability/:id" element={<Availability/>}/>}
-      <Route path="/success" element={<EventSuccess/>}/>
+      <Route path="/success" element={<EventSuccess provider={state.provider}/>}/>
       {loggedUser && <Route path="/bookings/upcoming" element={<Bookings param={1}/>}/> }
       {loggedUser && <Route path="/bookings/past" element={<Bookings param={2}/>}/>}
       {loggedUser && <Route path="/bookings/cancelled" element={<Bookings param={3}/>}/>}
