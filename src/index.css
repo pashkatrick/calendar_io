@@ -500,7 +500,7 @@ code {
 }
 
 @media only screen and (min-width:0px) and (max-width: 1020px) {
-  .providerNavLogo {
+  .providerNavLogo, .visible_menu_item {
     display:none;
   }
 
@@ -512,19 +512,19 @@ code {
 
   }
   .provNav {
-    display:flex;
-    margin: 0;
-    flex-direction: row;
-    justify-content: center;
     width: 70px;
     background-color: green;
   }
   
-  .menu_button_active {
-    width:18px;
+  .icon_event {
+    margin-right: 0;
+    border:1px solid white;
   }
-  .menu_button {
-    width:18px;
+
+  .menu_button_active, .menu_button {
+    justify-content: center;
+    max-width:30px;
+    border:1px solid red;
   }
 
   .login_block, .popup_title, .icon_unfold, .popup_title, .avatar_sleep_on, .avatar_sleep_off {
@@ -595,6 +595,11 @@ code {
 .menu_button:hover {
   background-color:#F8F8F8;
   color:rgb(38, 38, 38);
+  cursor: pointer;
+}
+
+.menu_button_active:hover {
+  cursor: default;
 }
 
 .menu_button:hover:nth-child(1) > .icon_event{
@@ -909,7 +914,11 @@ cursor: pointer;
 .menu_icon, .icon_event, .icon_bookings, .icon_settings, .icon_availability, .icon_alert {
   width:18px;
   height:18px;
-  margin-right:10px;
+  /* margin-right:10px; */
+}
+
+.visible_menu_item {
+  margin-left: 10px;
 }
 
 .icon_bookings_white {

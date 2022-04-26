@@ -23,6 +23,8 @@ export default function App() {
   const loggedUser = localStorage.getItem('user')
   const currentDate = useSelector(state=>state.chosenDate)
   const notify = useSelector(state=>state.notifify)
+  var axios = require('axios');
+
 
   const [state, setState] = useState({
     notify:true,
@@ -32,10 +34,9 @@ export default function App() {
     path:location.substring(1)
   })
   
-
+  
 
   function loadUsers() {
-  var axios = require('axios');
   
   var config = {
   method: 'get',
@@ -69,6 +70,22 @@ export default function App() {
     if (location=='/wizard' || location=='/login' || location=='/' || location=='/success') return false
     else return true
   }
+
+  function getUserId () {
+    var config = {
+        method: 'GET',
+        url: `http://109.107.176.29:5000/user/${loggedUser}?full=true}`,
+        headers: { 
+          'Content-Type': 'application/json'
+        }
+      };
+      
+      axios(config)
+      .then(function (response) {
+      console.log(response.data);
+      })
+}
+
 
   return (
     <div className='appContainer'>

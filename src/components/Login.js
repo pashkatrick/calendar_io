@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Input from './Input'
 
@@ -6,41 +6,42 @@ export default function Login() {
 
     const [state, setState] = useState({
         email:'',
-        username:'',
         password:'',
-        id:null
+        token:null,
     })
     
     const axios = require('axios');
     const navigate = useNavigate()
     
     function loginUser () {
-        // var data = JSON.stringify({
-        //   "login": "nathanmorris",
-        //   "password": ""
-        // });
+        var data = JSON.stringify({
+          "login": state.email,
+          "password": state.password
+        });
         
-        // var config = {
-        //   method: 'POST',
-        //   url: 'http://109.107.176.29:5000/auth/signin',
-        //   headers: { 
-        //     'Content-Type': 'application/json'
-        //   },
-        //   data : data
-        // };
-
-        localStorage.setItem('user',state.email)
-        // localStorage.setItem('id',state._id)
-        navigate("/events")
+        var config = {
+          method: 'POST',
+          url: 'http://109.107.176.29:5000/auth/signin',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
         
-        // axios(config)
-        // .then(function (response) {
-        // console.log(JSON.stringify(response.data));
-        // })
+        axios(config)
+        .then(function (response) {
+        setState({...state, token:response.data.token});
+        })
     }
 
+    useEffect (()=> {
+        if (state.token) {
+            localStorage.setItem('token',state.token)
+            localStorage.setItem('user',state.email)
+            navigate("/events")
+        }
+    })
       
-
     function change (field, value) {
         setState({...state, [field]:value})
       }
