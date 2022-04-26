@@ -49,7 +49,6 @@ export default function ProviderCal(props) {
 
 
   function setTime (time) {
-    //redux setTime
     store.dispatch({
       type:actions.TIME_ADDED,
       payload:{ 

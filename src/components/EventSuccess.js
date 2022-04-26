@@ -9,7 +9,8 @@ export default function EventSuccess(props) {
 
   const event = useSelector(state=>state.event)  
   const date = useSelector(state=>state.chosenDate) 
-
+  const providerId = props.provider._id
+  
   return (
     <Fragment>
     {/* {currentEvent? <div className="page"> */}

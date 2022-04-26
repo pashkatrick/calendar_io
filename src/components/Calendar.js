@@ -107,7 +107,7 @@ function daysInMonth (month, year) {
       store.dispatch({
         type:actions.DATE_ADDED,
         payload:{
-          date:{date:month+'_'+year+'_'+obj.id,
+          date:{date:month+'-'+year+'-'+obj.id,
           weekday:obj.wday,
           day:obj.id,
           month:month,
