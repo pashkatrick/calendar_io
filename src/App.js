@@ -15,6 +15,7 @@ import LeftNavbar from './components/LeftNavbar'
 import Login from './components/Login';
 import Bookings from './pages/Bookings';
 import Notification from './components/Notification';
+import BottomMenu from './components/BottomMenu';
 
 
 export default function App() {
@@ -90,7 +91,8 @@ export default function App() {
   return (
     <div className='appContainer'>
       {menu()? <LeftNavbar/> : null}
-      <div className={menu()? 'providerContent' : null}>
+      {/* {menu()? <BottomMenu/> : null} */}
+      {/* <div className={menu()? 'providerContent' : null}> */}
       <Routes>
       <Route path="/login" element={<Login/>}/>
       <Route path="/wizard" element={<Wizard/>}/>
@@ -113,7 +115,7 @@ export default function App() {
       <Route path="/" exact element={<Login />}/>
       <Route path="*" exact element={<NotFound/>}/>  
       </Routes>
-      </div>
+      {/* </div> */}
     {notify && <Notification/>}
     </div>
   )

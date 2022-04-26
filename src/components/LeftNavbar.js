@@ -30,10 +30,13 @@ export default function LeftNavbar() {
   return (
     <div className="provNav">
       <div className="providerNavLogo">
-      <span className="menu_logo">Calendar.io</span>
-      {/* <span>Cal</span> */}
+        <div className="column">
+          <span className="menu_logo">Calendar.io</span>
+          <span className="menu_logo_left">Cal</span>
+        </div>
       </div>
-      <div className="column">
+      
+      {/* <div className="menuFlex"> */}
         
         <div className={checkStyle('/events')} onClick={()=>Link('/events')}>
           <div className={`icon_event ${checkIcon('/event')}`}></div>
@@ -53,7 +56,7 @@ export default function LeftNavbar() {
           <div className={`icon_settings ${location==='/settings'? 'icon_active':null}`}></div>
           <span className="visible_menu_item">Settings</span>
           </div>                                   
-      </div>
+      {/* </div> */}
         <LoginBlock/>
       </div>
   )

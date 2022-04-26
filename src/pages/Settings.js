@@ -27,7 +27,7 @@ export default function Settings() {
     <Input placeholder={'email'} name={'Email'} type={'email'} width={'485px'} value={state.email} change={(value)=>change('email',value)}/>
     <br />
     <textarea  className="textarea" placeholder={'about'} name='about' id="" cols="59" rows="10"></textarea>
-    <Notification/>
+    {/* <Notification/> */}
     </div>
   )
 }

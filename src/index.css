@@ -80,11 +80,10 @@ code {
 .page {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   height: 100vh;
   justify-content: center;
   background-color: #fcfcfc;
-
 }
 
 .iconSquare {
@@ -380,6 +379,7 @@ code {
   bottom:50px;
   width:220px;
   background-color: white;
+  height: 200px;
 }
 
 .carrotQuestMenuItem {
@@ -489,18 +489,158 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
-  width: 250px;
-  height: 100vh;
+  padding: 20px;
+  /* width: 250px; */
+  /* height: 100vh; */
+  border:3px solid green;
 }
 
 .appContainer {
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
+  /* border:3px solid red; */
 }
 
-@media only screen and (min-width:0px) and (max-width: 1020px) {
-  .providerNavLogo, .visible_menu_item {
+.menu_logo_left {
+  text-align: center;
+}
+
+
+@media only screen and (min-width: 1020px) {
+  .menu_logo_left {
+    display: none;
+  }
+  
+  .menu_button, .menu_button_active {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    font-style: none;
+    font-weight: 600;
+    font-size:4mm;
+    text-decoration: none;
+    width:200px;
+    padding: 10px 8px 10px 8px; 
+    margin-top:20px;
+    color:rgb(150, 150, 150);
+  }
+
+  .menu_button_active {
+  background-color:#F8F8F8;
+  color:black;
+}
+
+.menu_button_active > .icon_active {
+  filter:brightness(0%)
+}
+
+.menu_button:hover {
+  background-color:#F8F8F8;
+  color:rgb(38, 38, 38);
+  cursor: pointer;
+}
+
+.menu_button_active:hover {
+  cursor: default;
+}
+
+.menu_button:hover:nth-child(1) > .icon_event{
+  filter: brightness(0%);
+}
+
+.menu_button:hover:nth-child(2) > .icon_availability{
+  filter: brightness(0%);
+}
+
+.menu_button:hover:nth-child(3) > .icon_bookings{
+  filter: brightness(0%);
+}
+
+.menu_button:hover:nth-child(4) > .icon_settings{
+  filter: brightness(0%);
+}
+
+}
+
+@media only screen and (min-width:0px) and (max-width: 729px) {
+  
+  .provNav {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height:80px;
+  }
+
+  .providerNavLogo {
+    display: none;
+  }
+  
+  .appContainer {
+    flex-direction: column;
+  }
+  
+  .visible_menu_item {
+    margin-top: 10px;
+  }
+
+  .menu_button_active, .menu_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-style: none;
+    font-weight: 600;
+    font-size:4mm;
+    text-decoration: none;
+    border:1px solid blue;
+    height: 100%;
+    width:25%;
+  }
+
+  .menu_button {
+    color: grey;
+  }
+  
+  .menu_button_active > .icon_active{
+    filter: brightness(0%);
+  }
+
+  .menu_button:hover {
+    background-color: #eeeaea;
+    cursor: pointer;
+  }
+  
+  .menu_logo_left  {
+    display: none;
+  }
+
+  .carrotQuestMenu {
+    right: 10px;
+    top:56px;
+  }
+
+  .login_block:hover {
+    cursor: pointer;
+  }
+  
+  .login_block {
+    display: none;
+    visibility: hidden;
+  }
+
+  .icon_unfold, .popup_title {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width:730px) and (max-width: 1020px) {
+  
+  .menu_logo, .visible_menu_item {
     display:none;
   }
 
@@ -508,27 +648,35 @@ code {
     left:20px;
   }
 
-  .providerNavLogo_thin {
-
-  }
   .provNav {
     width: 70px;
-    background-color: green;
+    padding:0px;
   }
   
   .icon_event {
     margin-right: 0;
-    border:1px solid white;
   }
 
   .menu_button_active, .menu_button {
     justify-content: center;
     max-width:30px;
-    border:1px solid red;
+    border-radius: 2px;
+    /* border:1px solid fuchsia; */
+    padding: 15px;
   }
 
-  .login_block, .popup_title, .icon_unfold, .popup_title, .avatar_sleep_on, .avatar_sleep_off {
+  .login_block {
+    margin:0;
+    max-width:62px;
+    border-radius: 2px;
+  }
+
+  .icon_unfold, .popup_title {
     display: none;
+  }
+
+  .login_block:hover {
+    cursor: pointer;
   }
 }
 
@@ -564,61 +712,7 @@ code {
   justify-content: center;
 }
 
-.providerContent {
-  margin-left: 250px;
-}
-
-.menu_button, .menu_button_active {
-  display: flex;
-  flex-direction: row;
-  align-items:center;
-  font-style: none;
-  font-weight: 600;
-  font-size:4mm;
-  text-decoration: none;
-  width:200px;
-  padding: 10px 8px 10px 8px; 
-  margin-top:20px;
-  color:rgb(150, 150, 150);
-}
-
-.menu_button_active {
-  background-color:#F8F8F8;
-  color:black;
-}
-
-.menu_button_active > .icon_active {
-  filter:brightness(0%)
-}
-
-
-.menu_button:hover {
-  background-color:#F8F8F8;
-  color:rgb(38, 38, 38);
-  cursor: pointer;
-}
-
-.menu_button_active:hover {
-  cursor: default;
-}
-
-.menu_button:hover:nth-child(1) > .icon_event{
-  filter: brightness(0%);
-}
-
-.menu_button:hover:nth-child(2) > .icon_availability{
-  filter: brightness(0%);
-}
-
-.menu_button:hover:nth-child(3) > .icon_bookings{
-  filter: brightness(0%);
-}
-
-.menu_button:hover:nth-child(4) > .icon_settings{
-  filter: brightness(0%);
-}
-
-.providerNavLogo, .providerNavLogo_thin {
+.providerNavLogo {
   font-size: larger;
   font-weight: bold;
   width:200px;
@@ -739,6 +833,11 @@ cursor: pointer;
   flex-direction: column;
 }
 
+.menuFlex {
+  display: flex;
+  flex-direction: column;
+}
+
 .column_center {
   display: flex;
   flex-direction: column;
@@ -851,6 +950,7 @@ cursor: pointer;
  }
 
  ._page {
+  width:100%;
   padding:30px;
   background-color: #F5F5F5;
   height: 100vh;
@@ -914,7 +1014,6 @@ cursor: pointer;
 .menu_icon, .icon_event, .icon_bookings, .icon_settings, .icon_availability, .icon_alert {
   width:18px;
   height:18px;
-  /* margin-right:10px; */
 }
 
 .visible_menu_item {
@@ -1017,8 +1116,6 @@ cursor: pointer;
   background-color:#F8F8F8;
 }
 
-
-
 .icon_event_button:hover {
   filter:brightness(0%);
 }
@@ -1088,20 +1185,14 @@ z-index: 1;
   margin-top:30px;
 }
 
-.login_block, .login_block_static {
+.login_block {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 60px;
-  width: 90%;
+  width: 230px;
   position: absolute;
-  bottom: 0;
-  margin:15px;
-}
-
-.login_block:hover {
-  cursor:pointer;
-  background-color: #e8e8e8;
+  bottom: 10px;
 }
 
 .avatar {
@@ -1150,6 +1241,7 @@ z-index: 1;
 }
 
 .login_subtitle {
+  display: flex;
   margin: 20px 0px 20px 0px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 5mm;
@@ -1284,4 +1376,9 @@ z-index: 1;
   font-size: 6mm;
 }
 
-
+/* .bottom_menu_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
