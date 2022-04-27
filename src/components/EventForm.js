@@ -10,6 +10,8 @@ export default function EventForm(props) {
   const navigate = useNavigate()
   const axios = require('axios');
   const time = useSelector(state=>state.time)
+  const date = useSelector(state=>state.chosenDate)
+  const eventName =useSelector(state=>state.event.title)
   const [state, setState] = useState({
     name:'',
     email:'',
@@ -23,35 +25,43 @@ export default function EventForm(props) {
     store.dispatch({
       type:actions.EVENT_ADDED,
       payload:{
-        event:{
-          title: state.name,
-          agenda: state.email,
+        event: {
+          title: eventName,
+          agenda: "",
           description: state.description,
+          user_id: null,
+          offline: false,
+          type_id: 1,
+          recepient_name: state.name,
+          recepient_email: state.email,
           start_time: time.time_from,
           end_time: time.time_to,
-          offline: true,
-          paid: true,
-          type_id: 0,
-          user_id: props.providerId
-        }
+          year: date.year,
+          month: date.month,
+          day: date.day,
+          weekday: date.weekday,
+          status: null,
+          confirmed: null,
+          rejected: null,
+          paid: null,
+          provider: props.providerId}
       }
     })
     eventPost()
   }
 
-
   function eventPost () {
-    var data = JSON.stringify({
-      "title": state.name,
-      "agenda": state.email,
-      "description": state.description,
-      "start_time": 0,
-      "end_time": 0,
-      "offline": true,
-      "paid": true,
-      "type_id": 0
-    });
-    
+    var data = JSON.stringify(
+      {
+        title: "test",
+        agenda: "string",
+        description: props.providerId,
+        start_time: 0,
+        end_time: 0,
+        offline: true,
+        paid: true,
+        type_id: 0
+      })
     var config = {
       method: 'POST',
       url: `http://109.107.176.29:5000/meeting/${props.providerId}/add`,
@@ -63,6 +73,7 @@ export default function EventForm(props) {
     
     axios(config)
     .then(function (response) {
+      console.log(response)
       formSuccess(response.status)
     })
   }

@@ -2,6 +2,8 @@ import '../navigation.css'
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import store from '../redux/store'
+import * as actions from '../redux/actionTypes'
 
 export default function ConsumerEvent (props) {
 
@@ -22,17 +24,17 @@ export default function ConsumerEvent (props) {
     })
     },[])
 
-    // function clickEvent (event) {
-    //     store.dispatch({
-    //         type:actions.EVENT_ADDED,
-    //         payload:{
-    //           event:{
-    //             title: state.name,
-    //           }
-    //         }
-    //       })
-    //     navigate(`${event.length}`) 
-    // }
+    function clickEvent (event) {
+        store.dispatch({
+            type:actions.EVENT_ADDED,
+            payload:{
+              event:{
+                title: event.title,
+              }
+            }
+          })
+        navigate(`${event.length}`) 
+    }
     
     return (
             <div className="page">
@@ -42,8 +44,8 @@ export default function ConsumerEvent (props) {
             {types==null? <p>this user does not have any events</p>:<p>has the following type of events</p>}
             <div className="column">
             {types && types.map(event=>
-                // <div onClick={()=>clickEvent(event)} className="_event_provider">
-                <NavLink key={event._id} className="_event_provider" to={`${event.length}`}>
+                <div onClick={()=>clickEvent(event)} className="_event_provider" key={event._id}>
+                {/* <NavLink key={event._id} className="_event_provider" to={`${event.length}`}> */}
                 <div className="column">
                 <div className="_subtitle">{event.title}</div>
                 <div className="row">
@@ -53,8 +55,8 @@ export default function ConsumerEvent (props) {
                 <div className="_subtitle">1-on-1</div>
                 </div>
                 </div>
-                {/* </div> */}
-                </NavLink>
+                </div>
+                // </NavLink>
                 )}
             </div>
     </div>
