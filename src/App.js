@@ -15,8 +15,6 @@ import LeftNavbar from './components/LeftNavbar'
 import Login from './components/Login';
 import Bookings from './pages/Bookings';
 import Notification from './components/Notification';
-import BottomMenu from './components/BottomMenu';
-
 
 export default function App() {
   
@@ -26,7 +24,6 @@ export default function App() {
   const notify = useSelector(state=>state.notifify)
   var axios = require('axios');
 
-
   const [state, setState] = useState({
     notify:true,
     providers:[],
@@ -35,8 +32,6 @@ export default function App() {
     path:location.substring(1)
   })
   
-  
-
   function loadUsers() {
   
   var config = {
@@ -45,11 +40,10 @@ export default function App() {
   headers: { }
   };
 
-  const dat = axios(config)
-    axios(config)
-    .then(function (response) {
-      setState({...state, providers:response.data.users})
-    })
+  axios(config)
+  .then(function (response) {
+    setState({...state, providers:response.data.users})
+  })
   }
   
   function loadProvider (provider) {
@@ -91,7 +85,6 @@ export default function App() {
   return (
     <div className='appContainer'>
       {menu()? <LeftNavbar/> : null}
-      {/* {menu()? <BottomMenu/> : null} */}
       {/* <div className={menu()? 'providerContent' : null}> */}
       <Routes>
       <Route path="/login" element={<Login/>}/>

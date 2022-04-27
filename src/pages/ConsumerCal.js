@@ -65,6 +65,7 @@ export default function ProviderCal(props) {
 
   return (
     <div className="page">
+        <div className="innerPage">
         <div className="eventContainer">
           <div className="event_description">
             <div className="_title">{props.provider.name}</div>
@@ -88,6 +89,7 @@ export default function ProviderCal(props) {
           <br />
           <div className="row">
           <NavLink className="wizard_button_light" to={`/${props.provider.username}`}>Back</NavLink>
+          </div>
           </div>
     </div>
 );

@@ -80,9 +80,9 @@ code {
 .page {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  height: 100vh;
+  align-items: center;
   justify-content: center;
+  height: 100vh;
   background-color: #fcfcfc;
 }
 
@@ -196,7 +196,6 @@ code {
   position: relative;
   width:200px;
   margin-left:10px;
-  /* border: 1px solid green; */
 }
 
 .portrait {  
@@ -331,7 +330,6 @@ code {
   text-align: center;
   line-height: 50px;
   font-family: Arial, Helvetica, sans-serif;
-  /* font-weight:bolder; */
   background-color: white;
   color:#c7c7c7;
 }
@@ -369,8 +367,6 @@ code {
 }
 
 .carrotQuestMenu {
-  /* display: flex;
-  flex-direction: column; */
   position: absolute;
   text-align: left;
   border-radius: 3px;
@@ -490,15 +486,11 @@ code {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  /* width: 250px; */
-  /* height: 100vh; */
-  border:3px solid green;
 }
 
 .appContainer {
   display:flex;
   flex-direction: row;
-  /* border:3px solid red; */
 }
 
 .menu_logo_left {
@@ -544,7 +536,7 @@ code {
   cursor: default;
 }
 
-.menu_button:hover:nth-child(1) > .icon_event{
+.menu_button:hover:first-child > .icon_event{
   filter: brightness(0%);
 }
 
@@ -573,6 +565,8 @@ code {
     padding: 0;
     margin: 0;
     height:80px;
+    background-color: white;
+    z-index: 2;
   }
 
   .providerNavLogo {
@@ -596,7 +590,6 @@ code {
     font-weight: 600;
     font-size:4mm;
     text-decoration: none;
-    border:1px solid blue;
     height: 100%;
     width:25%;
   }
@@ -661,7 +654,6 @@ code {
     justify-content: center;
     max-width:30px;
     border-radius: 2px;
-    /* border:1px solid fuchsia; */
     padding: 15px;
   }
 

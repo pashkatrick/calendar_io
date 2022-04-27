@@ -35,8 +35,6 @@ export default function LeftNavbar() {
           <span className="menu_logo_left">Cal</span>
         </div>
       </div>
-      
-      {/* <div className="menuFlex"> */}
         
         <div className={checkStyle('/events')} onClick={()=>Link('/events')}>
           <div className={`icon_event ${checkIcon('/event')}`}></div>
@@ -56,7 +54,7 @@ export default function LeftNavbar() {
           <div className={`icon_settings ${location==='/settings'? 'icon_active':null}`}></div>
           <span className="visible_menu_item">Settings</span>
           </div>                                   
-      {/* </div> */}
+
         <LoginBlock/>
       </div>
   )
