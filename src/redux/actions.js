@@ -9,6 +9,15 @@ export function eventAdded (state=[],event) {
     }]
 }
 
+export function userLogin (state=[],user) {
+    return [...state, {
+        type: actions.USER.LOGIN,
+        payload: {
+            user
+        }
+    }]
+}
+
 export function notificationAdded (notification) {
     return [...state, {
         type: actions.NOTIFICATION_ADDED,

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import store from '../redux/store';
 import Input from './Input'
+import * as actions from '../redux/actionTypes'
 
 export default function Login() {
 
@@ -34,19 +36,44 @@ export default function Login() {
         })
     }
 
+    function getUserId () {
+    var config = {
+        method: 'GET',
+        url: `http://109.107.176.29:5000/user/${state.email}?full=true`,
+        headers: { 
+          'Content-Type': 'application/json'
+        }
+      };
+      axios(config)
+      .then(function (response) {
+      writeUser(response.data.user)
+      })
+    }
+
     useEffect (()=> {
         if (state.token) {
             localStorage.setItem('token',state.token)
-            localStorage.setItem('user',state.email)
-            navigate("/events")
+            getUserId()
         }
     })
+
+    function writeUser (user) {
+      store.dispatch({
+        type:actions.USER_LOGIN,
+        payload:{
+          user:user
+        }
+      })
+      localStorage.setItem("user",user.name)
+      navigate("/events")
+    }
       
     function change (field, value) {
         setState({...state, [field]:value})
       }
 
-    return <div className="page">
+    return (
+    <div className="page">
         <div className="login_title">Calendar.io</div>
         <div className="login_subtitle">Sign in to your account</div>
         <div className="login_form">
@@ -61,4 +88,5 @@ export default function Login() {
         </div>
         </div>
     </div>
+    )
 }

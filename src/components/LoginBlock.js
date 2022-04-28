@@ -15,7 +15,6 @@ export default function LoginBlock() {
     function popup () {
         const result = !toggle
         setToggle(result)
-        console.log(toggle)
     }
 
     function shortName (string,id) {

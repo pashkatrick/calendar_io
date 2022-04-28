@@ -2,10 +2,12 @@ import React, { useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import BookingsOutlet from '../components/BookingsOutlet'
 import Meeting from '../components/Meeting'
+import { useSelector } from 'react-redux';
+
 
 export default function Bookings(props) {
   
-  const userId = 1
+  const userId = useSelector(state=>state.user._id)
   const [meetings, setMeetings] = useState([])
   const titles = [
     'Upcoming',
@@ -15,22 +17,22 @@ export default function Bookings(props) {
   const screen = props.param
   const title = titles[props.param-1]
 
-  // function loadMeetings() {
-  //   var axios = require('axios');
-  //   var config = {
-  //   method: 'get',
-  //   url: `http://109.107.176.29:5000/meeting/${userId}/all`,
-  //   headers: { }
-  //   };
-  //     axios(config)
-  //     .then(function (response) {
-  //       setMeetings(response.data.meetings)
-  //     })
-  //   }
+  function loadMeetings() {
+    var axios = require('axios');
+    var config = {
+    method: 'get',
+    url: `http://109.107.176.29:5000/meeting/${userId}/all`,
+    headers: { }
+    };
+      axios(config)
+      .then(function (response) {
+        setMeetings(response.data.meetings)
+      })
+    }
 
-  //   useEffect (()=> {
-  //     loadMeetings()
-  //   },[])
+    useEffect (()=> {
+      loadMeetings()
+    },[])
 
     // function meetingsFilter () {
 
