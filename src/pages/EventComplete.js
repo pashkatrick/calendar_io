@@ -4,10 +4,12 @@ import { useSelector } from 'react-redux';
 import * as variables from '../services/variables'
 import { timeDecoder } from '../services/timeBuilder';
 
-export default function EventComplete(props) {
+export default function EventComplete() {
 
   const date = useSelector(state=>state.chosenDate)  
   const time = useSelector(state=>state.time)  
+  const event = useSelector(state=>state.event)
+  const provider = useSelector(state=>state.provider)
   const months = variables.CALENDAR_MONTHS_FULL
 
   function displayDate () {
@@ -19,18 +21,18 @@ export default function EventComplete(props) {
     <div className="page">
     <div className="eventContainer _border">
           <div className="event_description _extraheight">
-            <div className="_title">{props.provider.name}</div>
+            <div className="_title">{provider.name}</div>
             <br/>
             <div className="row">
             <div className="icon_clock"></div>
-            <div className="_subtitle">event type</div>
+            <div className="_subtitle">{event.title}</div>
             </div>
             <div className="row green_title">
             <div className="icon_bookings"></div>  
             <div className="complete_event_title">{displayDate()}</div>
             </div>
           </div>
-            <EventForm providerId={props.provider._id}/>
+            <EventForm providerId={provider._id}/>
             <div className="column">
           </div>
       </div>    

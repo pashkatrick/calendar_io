@@ -16,7 +16,6 @@ export default function ConsumerEvent () {
     const axios = require('axios');
     
     useEffect (()=> {
-        const axios = require('axios');
         var config = {
         method: 'get',
         url: `http://109.107.176.29:5000/user/${param.provider}?full=true`,
@@ -29,12 +28,11 @@ export default function ConsumerEvent () {
     },[])
            
     function fetchProvider(response) {
-        if (response.status===200) {
-          console.log(response)  
+        if (response.data==false) {
+          navigate('*')
+        } else {
           setProvider(response.data.user)
           saveProvider(response.data.user)
-        } else {
-          navigate('*')
         }
     }
         
@@ -62,13 +60,7 @@ export default function ConsumerEvent () {
     }
     })
 
-      useEffect (()=> {
-        
-
-
-      },[])
-
-    function clickEvent (event) {
+    function setEvent (event) {
         store.dispatch({
             type:actions.EVENT_ADDED,
             payload:{
@@ -88,7 +80,7 @@ export default function ConsumerEvent () {
             {types==null? <p>this user does not have any events</p>:<p>has the following type of events</p>}
             <div className="column">
             {types && types.map(event=>
-                <div onClick={()=>clickEvent(event)} className="_event_provider" key={event._id}>
+                <div onClick={()=>setEvent(event)} className="_event_provider" key={event._id}>
                 <div className="column">
                 <div className="_subtitle">{event.title}</div>
                 <div className="row">

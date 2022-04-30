@@ -1,16 +1,23 @@
-import React, { useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import * as actions from '../redux/actionTypes'
-import NotFound from '../pages/NotFound';
 import Input from '../components/Input'
+import { timeDecoder } from '../services/timeBuilder';
+import * as variables from '../services/variables'
 
-export default function EventSuccess(props) {
+export default function EventSuccess() {
 
-  const event = useSelector(state=>state.event)  
+  const event = useSelector(state=>state.event) 
+  const time = useSelector(state=>state.time) 
+  const months = variables.CALENDAR_MONTHS_FULL
   const date = useSelector(state=>state.chosenDate) 
-  const providerId = props.provider._id
+  const provider = useSelector(state=>state.provider) 
   
+  function displayDate () {
+    const result = months[date.month] + " " + date.day  + ", " + date.year + " at " + timeDecoder(time.time_from)
+    return result
+  }
+
   return (
     <Fragment>
     {/* {currentEvent? <div className="page"> */}
@@ -25,13 +32,13 @@ export default function EventSuccess(props) {
         </div>
           <dir className='event_success_body'>
               <div className="column">
-                <div>{`What between ${event.title} and ${props.provider.username}`}</div>
-                <div>{`When ${event.title} and ${props.provider.username}`}</div>
+                <div>{`What ${event.title} between ${event.recepient_name} and ${provider.username}`}</div>
+                <div>{`When ${displayDate()}`}</div>
               </div>
           </dir>
           <dir className='event_success_body'>
               <div className="row">
-                <Input value={'fetch_the_email@domain.com'} width='200px'/>
+                <Input value={event.recepient_email} width='200px'/>
                 <NavLink className="wizard_button" to='/wizard'>Try it out</NavLink>
               </div>
           </dir>

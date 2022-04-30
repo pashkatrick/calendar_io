@@ -45,19 +45,15 @@ export default function App() {
       {loggedUser && <Route path="/signup" element={<SignUpPage/>}/>}
       {loggedUser && <Route path="/availability" element={<Availability/>}/>}
       {loggedUser && <Route path="/availability/:id" element={<Availability/>}/>}
-      {/* <Route path="/success" element={<EventSuccess provider={state.provider}/>}/> */}
+      <Route path="/success" element={<EventSuccess/>}/>
       {loggedUser && <Route path="/bookings/upcoming" element={<Bookings param={1}/>}/> }
       {loggedUser && <Route path="/bookings/upcoming/:id" element={<MeetingEdit/>}/> }
       {loggedUser && <Route path="/bookings/past" element={<Bookings param={2}/>}/>}
       {loggedUser && <Route path="/bookings/cancelled" element={<Bookings param={3}/>}/>}
         
       <Route exact path={`/:provider`} element={<ConsumerEvent/>}/>
-      <Route exact path={`/:provider/:length`} element={<LinkHub/>}/>
-      {currentDate && <Route exact path={`/:provider/:type/:date`} element={<LinkHub/>}/>}
-      
-      {/* <Route exact path={`/${state.link}`} element={<ConsumerEvent provider = {state.provider}/>}/>
-      <Route  exact path={`/${state.link}/:type`} element={<ConsumerCal provider = {state.provider}/>}/>
-      {currentDate && <Route exact path={`/${state.link}/:type/${currentDate.date}`} element={<EventComplete provider = {state.provider}/>}/>} */}
+      <Route exact path={`/:provider/:type`} element={<ConsumerCal/>}/>
+      {currentDate && <Route exact path={`/:provider/:type/:date`} element={<EventComplete/>}/>}
 
       <Route path="/" exact element={<Login />}/>
       <Route path="*" exact element={<NotFound/>}/>  
