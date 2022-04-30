@@ -9,9 +9,18 @@ export function eventAdded (state=[],event) {
     }]
 }
 
+export function userLogin (state=[],provider) {
+    return [...state, {
+        type: actions.PROVIDER_ADDED,
+        payload: {
+            provider
+        }
+    }]
+}
+
 export function userLogin (state=[],user) {
     return [...state, {
-        type: actions.USER.LOGIN,
+        type: actions.USER_LOGIN,
         payload: {
             user
         }

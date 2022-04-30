@@ -64,7 +64,7 @@ export default function Login() {
           user:user
         }
       })
-      localStorage.setItem("user",user.name)
+      localStorage.setItem("user",user.username)
       navigate("/events")
     }
       

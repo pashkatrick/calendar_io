@@ -6,6 +6,8 @@ export default function PopUpMenu(props) {
   
     const ref = useRef()
     const navigate = useNavigate()
+    const user = localStorage.getItem('user')
+
 
     useOutsideClick (ref, () => {
         props.click()
@@ -22,7 +24,7 @@ export default function PopUpMenu(props) {
     <div onClick={()=>buttonClick()} className='carrotQuestMenuItem border_bottom' to='/availability'>
       <div className='icon_sleep'></div>Set yourself as away
     </div>
-    <NavLink className='carrotQuestMenuItem border_bottom' to='/availability'>
+    <NavLink className='carrotQuestMenuItem border_bottom' to={`/${user}`}>
       <div className='icon_public'></div>View public page
     </NavLink>
 

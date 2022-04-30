@@ -12,7 +12,7 @@ export default function ProviderCal(props) {
     
   const [frames, setFrames] = useState([])
   const [filteredFrames, setFilteredFrames] = useState([])
-  const providerId = props.provider._id
+  const providerId = useSelector(state=>state.provider._id)
   const currentDate = useSelector(state=>state.chosenDate)
   const length = useParams()
   const navigate = useNavigate();
@@ -68,11 +68,11 @@ export default function ProviderCal(props) {
         <div className="innerPage">
         <div className="eventContainer">
           <div className="event_description">
-            <div className="_title">{props.provider.name}</div>
+            <div className="_title">123</div>
             <br/>
             <div className="row">
             <div className="icon_clock"></div>
-            <div className="_subtitle">{length.type} min</div>
+            <div className="_subtitle">min</div>
             </div>
             <div>time zone</div>
           </div>

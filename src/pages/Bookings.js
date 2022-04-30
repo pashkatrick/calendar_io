@@ -1,9 +1,8 @@
-import React, { useEffect, useState} from 'react'
+import React, { useDebugValue, useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import BookingsOutlet from '../components/BookingsOutlet'
 import Meeting from '../components/Meeting'
 import { useSelector } from 'react-redux';
-
 
 export default function Bookings(props) {
   
@@ -34,9 +33,9 @@ export default function Bookings(props) {
       loadMeetings()
     },[])
 
-    // function meetingsFilter () {
-
-    // }
+    function meetingsFilter (meeting,condition) {
+      if (condition==true) return <Meeting meeting={meeting}/>
+    }
 
   return (
     <div className='_page'>
@@ -49,13 +48,22 @@ export default function Bookings(props) {
       <br />
       <br />
         {screen===1 && meetings.map(meeting=> 
-          <Meeting meeting={meeting}/>
+          meetingsFilter(meeting, true)
           )}
-        {screen!=1 && 
+        {screen===2 && meetings.map(meeting=> 
+          meetingsFilter(meeting, meeting.paid)
+        )}
+        
+        {screen===3 && meetings.map(meeting=> 
+          <div className=""></div>
+        )}
+        
+        
+        {/* {screen!=1 && 
         <div className="booking_screen">
           <BookingsOutlet title={title}/>
         </div>
-        }
+        } */}
       
     </div>
   )

@@ -18,7 +18,7 @@ export default function LoginBlock() {
     }
 
     function shortName (string,id) {
-        if (string.length>=12) return string.substring(0,18-id)+'...'
+        if (string.length>=12) return string.substring(0,10-id)+'...'
         else return string
     }
 

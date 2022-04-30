@@ -11,7 +11,7 @@ export default function EventComplete(props) {
   const months = variables.CALENDAR_MONTHS_FULL
 
   function displayDate () {
-    const result = timeDecoder(time.time_from) + ", " + date.day + ", " + months[date.month] + ", " + date.year
+    const result = timeDecoder(time.time_from) + ", " + date.day + " " + months[date.month] + ", " + date.year
     return result
   }
 

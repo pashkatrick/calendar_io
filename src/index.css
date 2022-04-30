@@ -83,6 +83,7 @@ code {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width:100%; 
   background-color: #fcfcfc;
 }
 
@@ -402,7 +403,7 @@ code {
   cursor: pointer;
 }
 
-.icon_signout, .icon_sleep, .icon_sent, .icon_text, .icon_public, .icon_roadmap, .icon_popup, .icon_clock, .icon_person, .icon_copy, .icon_more, .icon_unfold {
+.icon_signout, .icon_sleep, .icon_sent, .icon_text, .icon_public, .icon_roadmap, .icon_popup, .icon_clock, .icon_person, .icon_copy, .icon_more, .icon_unfold, .icon_cancel {
   width:18px;
   height: 18px;
   background-image: url('./img/icon_logout.svg');
@@ -483,6 +484,7 @@ code {
 
 .provNav {
   display: flex;
+  background-color: white;
   flex-direction: column;
   align-items: center;
   padding: 20px;
@@ -943,10 +945,12 @@ cursor: pointer;
 
  ._page {
   width:100%;
+  justify-content: center;
+  align-items: center;
   padding:30px;
-  background-color: #F5F5F5;
   height: 100vh;
   box-sizing: border-box;
+  overflow-y: scroll;
  }
 
  ._title, ._subtitle {
@@ -1003,7 +1007,7 @@ cursor: pointer;
   background: url('./img/calendar.png')
  }
 
-.menu_icon, .icon_event, .icon_bookings, .icon_settings, .icon_availability, .icon_alert {
+.menu_icon, .icon_event, .icon_bookings, .icon_settings, .icon_availability, .icon_alert, .icon_cancel {
   width:18px;
   height:18px;
 }
@@ -1021,6 +1025,11 @@ cursor: pointer;
   padding:20px;
   background-color: white;
   background-image: url('./img/no_events24dp.svg');
+}
+
+.icon_cancel {
+  margin-left:0;
+  background: url('./img/icon_cancel.svg');
 }
 
 .icon_event {
