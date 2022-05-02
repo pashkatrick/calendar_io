@@ -1,6 +1,12 @@
+import { useLocation } from 'react-router-dom';
 import '../navigation.css'
 
-export default function ProviderCal(props) {
+
+export default function ProviderCal() {
+
+    const location = useLocation().pathname
+
+    
 
     return (
         <div className='page'>

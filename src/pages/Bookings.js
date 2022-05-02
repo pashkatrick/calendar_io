@@ -17,16 +17,18 @@ export default function Bookings(props) {
   const title = titles[props.param-1]
 
   function loadMeetings() {
-    var axios = require('axios');
-    var config = {
-    method: 'get',
-    url: `http://109.107.176.29:5000/meeting/${userId}/all`,
-    headers: { }
-    };
-      axios(config)
-      .then(function (response) {
-        setMeetings(response.data.meetings)
-      })
+    if (userId) {
+      var axios = require('axios');
+      var config = {
+      method: 'get',
+      url: `http://109.107.176.29:5000/meeting/${userId}/all`,
+      headers: { }
+      };
+        axios(config)
+        .then(function (response) {
+          setMeetings(response.data.meetings)
+        })
+      }
     }
 
     useEffect (()=> {
@@ -47,7 +49,7 @@ export default function Bookings(props) {
       <div className="booking_line"></div>
       <br />
       <br />
-        {screen===1 && meetings.map(meeting=> 
+        {screen===1 && meetings && meetings.map(meeting=> 
           meetingsFilter(meeting, true)
           )}
         {screen===2 && meetings.map(meeting=> 

@@ -14,7 +14,7 @@ export default function PopUpMenu(props) {
     }) 
 
     function buttonClick (param) {
-      if (param="login") localStorage.clear()
+      if (param=="login") localStorage.clear()
       navigate(`/${param}`)
       props.click()
     }
@@ -38,7 +38,7 @@ export default function PopUpMenu(props) {
     <NavLink className='carrotQuestMenuItem border_bottom' to='/availability'>
       <div className='icon_text'></div>Help
     </NavLink>
-    <div onClick={()=>buttonClick('login')} className='carrotQuestMenuItem' to='/'>
+    <div onClick={()=>buttonClick('login')} className='carrotQuestMenuItem'>
       <div className='icon_signout'></div>Sign Out
     </div>
     

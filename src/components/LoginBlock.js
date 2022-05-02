@@ -26,10 +26,10 @@ export default function LoginBlock() {
     <Fragment>
     <div className="row login_block" onClick={()=>popup()}>
     {active? <div className="avatar_sleep_on"></div> : <div className="avatar_sleep_on"></div>}
-        <div className="avatar">{name.substring(0,1)}</div>
+        {name && <div className="avatar">{name.substring(0,1)}</div>}
           <div className="column">
-          <div className="popup_title">{shortName(name,0)}</div>
-          <div className="popup_title">{`calendar.io/${shortName(name,13)}`}</div>
+          {name && <div className="popup_title">{shortName(name,0)}</div>}
+          {name && <div className="popup_title">{`calendar.io/${shortName(name,13)}`}</div>}
           </div>
           <div className="icon_unfold popup_button"></div>
       </div>

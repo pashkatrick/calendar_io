@@ -1,6 +1,6 @@
 import '../navigation.css'
 import Calendar from '../components/Calendar'
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useNavigate, NavLink, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import * as variables from '../services/variables'
@@ -41,9 +41,9 @@ export default function ProviderCal(props) {
       };    
       axios(config)
       .then(function (response) {
-          console.log(response)
+          console.log("loadProvider trigger")
           if (response.data==false) {
-              navigate('*')
+              navigate('/404')
               
           } else {
             setProvider(response.data.user)
@@ -149,6 +149,7 @@ export default function ProviderCal(props) {
 
 
   return (
+    <Fragment>
     <div className="page">
         <div className="innerPage">
         <div className="eventContainer">
@@ -177,6 +178,7 @@ export default function ProviderCal(props) {
           </div>
           </div>
     </div>
+    </Fragment>
 );
 }
  

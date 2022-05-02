@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import store from '../redux/store'
 import * as actions from '../redux/actionTypes'
+import { Fragment } from 'react/cjs/react.development';
 
 
 export default function ConsumerEvent () {
@@ -23,18 +24,20 @@ export default function ConsumerEvent () {
         };    
         axios(config)
         .then(function (response) {
-        fetchProvider(response)
+          if (response.data!==false) {
+            fetchProvider(response)
+          }
+          else {
+            navigate('/404')
+          }
     })
     },[])
            
     function fetchProvider(response) {
-        if (response.data==false) {
-          navigate('*')
-        } else {
           setProvider(response.data.user)
           saveProvider(response.data.user)
-        }
     }
+
         
     function saveProvider (provider) {
         store.dispatch({
@@ -73,12 +76,13 @@ export default function ConsumerEvent () {
     }
     
     return (
-            <div className="page">
-            <div className="avatar">{provider? provider.name.substring(0,1):'noname'}</div>
-            <h4>{provider? provider.name:'noname'}</h4>
-            <h5>{provider? provider.bio:'noname'}</h5>
-            {types==null? <p>this user does not have any events</p>:<p>has the following type of events</p>}
-            <div className="column">
+      <Fragment>
+      {provider && <div className="page">
+        <div className="avatar">{provider? provider.name.substring(0,1):'noname'}</div>
+          <h4>{provider? provider.name:'noname'}</h4>
+          <h5>{provider? provider.bio:'noname'}</h5>
+          {types==null? <p>this user does not have any events</p>:<p>has the following type of events</p>}
+          <div className="column">
             {types && types.map(event=>
                 <div onClick={()=>setEvent(event)} className="_event_provider" key={event._id}>
                 <div className="column">
@@ -94,6 +98,7 @@ export default function ConsumerEvent () {
                 )}
             </div>
     </div>
+}    </Fragment>
 );
 }
  

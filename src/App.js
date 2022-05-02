@@ -14,51 +14,60 @@ import Wizard from './components/Wizard';
 import LeftNavbar from './components/LeftNavbar'
 import Login from './components/Login';
 import Bookings from './pages/Bookings';
-import Notification from './components/Notification';
 import MeetingEdit from './components/MeetingEdit';
-import LinkHub from './components/LinkHub';
+
 
 export default function App() {
   
-  const location=(useLocation()).pathname
-  const loggedUser = localStorage.getItem("user")
+  const location=((useLocation()).pathname).substring(1)
+  const loggedUser = useSelector(state=>state.user)
   const currentDate = useSelector(state=>state.chosenDate)
+  const locations = ['events',
+  'availability',
+  'settings',
+  'bookings/upcoming',
+  'bookings/past',
+  'bookings/cancelled',
+]
 
-  
+  // useEffect (()=> {
+  //   console.log(location)
+  // })
+
   function menu() {
-    if (loggedUser==null) return false
-    if (location=='/wizard' || location=='/login' || location=='/' || location=='/success') return false
-    else return true
+    if (locations.includes(location)) return true
   }
 
   return (
     <div className='appContainer'>
-      {menu()? <LeftNavbar/> : null}
-      {/* <div className={menu()? 'providerContent' : null}> */} 
+      {menu()? <LeftNavbar/>:null}
       <Routes>
       <Route path="/login" element={<Login/>}/>
       <Route path="/wizard" element={<Wizard/>}/>
         
-          {loggedUser && <Route path="/events" element={<Events/>}/>}
-          {loggedUser && <Route path="/settings" element={<Settings/>}/>}
+          
         
       {loggedUser && <Route path="/signup" element={<SignUpPage/>}/>}
+      {loggedUser && <Route path="/events" element={<Events/>}/>}
+      {loggedUser && <Route path="/settings" element={<Settings/>}/>}
       {loggedUser && <Route path="/availability" element={<Availability/>}/>}
       {loggedUser && <Route path="/availability/:id" element={<Availability/>}/>}
-      <Route path="/success" element={<EventSuccess/>}/>
+      {currentDate && <Route path="/success" element={<EventSuccess/>}/>}
       {loggedUser && <Route path="/bookings/upcoming" element={<Bookings param={1}/>}/> }
       {loggedUser && <Route path="/bookings/upcoming/:id" element={<MeetingEdit/>}/> }
       {loggedUser && <Route path="/bookings/past" element={<Bookings param={2}/>}/>}
       {loggedUser && <Route path="/bookings/cancelled" element={<Bookings param={3}/>}/>}
         
-      <Route exact path={`/:provider`} element={<ConsumerEvent/>}/>
-      <Route exact path={`/:provider/:type`} element={<ConsumerCal/>}/>
       {currentDate && <Route exact path={`/:provider/:type/:date`} element={<EventComplete/>}/>}
+      <Route exact path={`/:provider/:type`} element={<ConsumerCal/>}/>
+      <Route exact path={`/:provider`} element={<ConsumerEvent/>}/>
+      
+      
 
       <Route path="/" exact element={<Login />}/>
+      <Route path="/404" exact element={<NotFound/>}/>  
       <Route path="*" exact element={<NotFound/>}/>  
       </Routes>
-      {/* </div> */}
     </div>
   )
 }
